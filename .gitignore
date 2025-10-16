@@ -1,0 +1,14 @@
+
+# give me .gitignore template for fastapi project
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.env
+*.venv
+*.egg-info/
+dist/
+build/
+myenv/
