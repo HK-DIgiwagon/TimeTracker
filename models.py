@@ -22,6 +22,7 @@ class EmployeeMaster(TimeStampedModel):
     # Relationships
     attendances = relationship("DailyAttendance", back_populates="employee")
     leaves = relationship("EmployeeLeave", back_populates="employee")
+    timelogs = relationship("ZohoTimelogEntry", back_populates="employee") 
 
 # Daily attendance table
 class DailyAttendance(TimeStampedModel):
@@ -52,3 +53,19 @@ class EmployeeLeave(TimeStampedModel):
     leave_type = Column(Enum(LeaveTypeEnum), nullable=False)
 
     employee = relationship("EmployeeMaster", back_populates="leaves")
+
+
+class ZohoTimelogEntry(TimeStampedModel):
+    __tablename__ = "zoho_timelog_entry"
+
+    id = Column(Integer, primary_key=True, index=True)
+    emp_id = Column(String, ForeignKey("employee_master.id"), nullable=False)
+    timelog_date = Column(Date, nullable=False)
+    project = Column(String, nullable=False)
+    task = Column(String, nullable=False)
+    start_time = Column(Time, nullable=False)
+    end_time = Column(Time, nullable=False)
+    logged_hours = Column(Time, nullable=False)
+
+    # Relationship to employee
+    employee = relationship("EmployeeMaster", back_populates="timelogs")
