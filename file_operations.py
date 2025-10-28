@@ -4,6 +4,7 @@ from database import SessionLocal
 from models import EmployeeMaster, DailyAttendance
 from datetime import timedelta
 from dotenv import load_dotenv  
+from logger_config import attendance_logger
 
 
 load_dotenv()  
@@ -35,20 +36,20 @@ def read_xls_file():
         # Read the Excel file
         df = pd.read_excel(file_path, engine='xlrd')
         
-        print(f"Successfully read {filename}")
-        print(f"Shape: {df.shape}")
+        attendance_logger.info(f"Successfully read {filename}")
+        attendance_logger.info(f"Shape: {df.shape}")
         
         if len(xls_files) > 1:
-            print(f"Note: Multiple .xls files found. Loaded: {filename}")
-            print(f"Other files: {xls_files[1:]}")
+            attendance_logger.warning(f"Note: Multiple .xls files found. Loaded: {filename}")
+            attendance_logger.warning(f"Other files: {xls_files[1:]}")
         
         return df, file_path
     
     except FileNotFoundError as e:
-        print(f"File error: {e}")
+        attendance_logger.error(f"File error: {e}")
         return None, None
     except Exception as e:
-        print(f"Error reading file: {e}")
+        attendance_logger.error(f"Error reading file: {e}")
         return None, None
 
 
@@ -128,19 +129,19 @@ def clean_data(df):
         # Remove rows where user_id is still None
         df_cleaned = df_cleaned[df_cleaned['user_id'].notna()]
         
-        print(f"Data cleaned successfully. Shape: {df_cleaned.shape}")
+        attendance_logger.info(f"Data cleaned successfully. Shape: {df_cleaned.shape}")
         
         return df_cleaned
     
     except KeyError as e:
-        print(f"Column error: {e}")
-        print(f"Available columns: {list(df.columns)}")
+        attendance_logger.error(f"Column error: {e}")
+        attendance_logger.error(f"Available columns: {list(df.columns)}")
         return None
     except ValueError as e:
-        print(f"Value error: {e}")
+        attendance_logger.error(f"Value error: {e}")
         return None
     except Exception as e:
-        print(f"Error cleaning data: {e}")
+        attendance_logger.error(f"Error cleaning data: {e}")
         return None
 
 
@@ -174,7 +175,7 @@ def get_or_create_user_id(full_name):
         return new_user.id
         
     except Exception as e:
-        print(f"Error in get_or_create_user_id: {e}")
+        attendance_logger.error(f"Error in get_or_create_user_id: {e}")
         if db:
             db.rollback()
         return None
@@ -187,7 +188,7 @@ def get_or_create_user_id(full_name):
 def load_data_to_db(df):
     """
     Loads attendance data from DataFrame to database.
-    Handles duplicate checking and bulk insertion.
+    Updates existing records or inserts new ones (upsert operation).
     
     Args:
         df: DataFrame with columns: user_id, Date, First IN, Last OUT, Gross Hours
@@ -199,7 +200,7 @@ def load_data_to_db(df):
     try:
         # Validate input
         if df is None or df.empty:
-            print("Error: DataFrame is empty or None")
+            attendance_logger.error("Error: DataFrame is empty or None")
             return False
         
         # Convert date/time columns
@@ -215,46 +216,45 @@ def load_data_to_db(df):
         df = df[df['Date'].notna()]
         
         if df.empty:
-            print("Error: No valid dates found after cleaning")
+            attendance_logger.error("Error: No valid dates found after cleaning")
             return False
         
         df_min_date = df['Date'].min()
         df_max_date = df['Date'].max()
         
-        print(f"Processing data for date range: {df_min_date} to {df_max_date}")
+        attendance_logger.info(f"Processing data for date range: {df_min_date} to {df_max_date}")
         
         # Database operations
         db = SessionLocal()
         
-        # Check if any records exist in this date range
-        existing_records = db.query(DailyAttendance).filter(
+        # Get all existing records for this date range as a dictionary for fast lookup
+        existing_records_query = db.query(DailyAttendance).filter(
             DailyAttendance.attendance_date.between(df_min_date, df_max_date)
-        ).first()
+        ).all()
         
-        if existing_records:
-            print(f"Existing data found. Checking for duplicates...")
-            inserted_count = 0
-            skipped_count = 0
+        # Create a dictionary: (emp_id, date) -> record object
+        existing_records_dict = {
+            (record.emp_id, record.attendance_date): record 
+            for record in existing_records_query
+        }
+        
+        inserted_count = 0
+        updated_count = 0
+        records_to_insert = []
+        
+        # Process each row
+        for _, row in df.iterrows():
+            key = (row['user_id'], row['Date'])
             
-            # Get all existing records for this date range (optimization)
-            existing_set = set(
-                db.query(
-                    DailyAttendance.emp_id,
-                    DailyAttendance.attendance_date
-                ).filter(
-                    DailyAttendance.attendance_date.between(df_min_date, df_max_date)
-                ).all()
-            )
-            
-            # Prepare records to insert
-            records_to_insert = []
-            
-            for _, row in df.iterrows():
-                # Check if record already exists using set lookup (much faster)
-                if (row['user_id'], row['Date']) in existing_set:
-                    skipped_count += 1
-                    continue
-                
+            if key in existing_records_dict:
+                # Update existing record
+                existing_record = existing_records_dict[key]
+                existing_record.in_time = row['First IN']
+                existing_record.out_time = row['Last OUT']
+                existing_record.duration = row['Gross Hours']
+                updated_count += 1
+            else:
+                # Prepare new record for bulk insert
                 records_to_insert.append({
                     "emp_id": row['user_id'],
                     "attendance_date": row['Date'],
@@ -262,39 +262,27 @@ def load_data_to_db(df):
                     "out_time": row['Last OUT'],
                     "duration": row['Gross Hours']
                 })
-            
-            # Bulk insert new records
-            if records_to_insert:
-                db.bulk_insert_mappings(DailyAttendance, records_to_insert)
-                db.commit()
-                inserted_count = len(records_to_insert)
-            
-            print(f"Inserted: {inserted_count} records, Skipped: {skipped_count} duplicates")
         
-        else:
-            # No existing records - bulk insert all
-            bulk_data = [
-                {
-                    "emp_id": row['user_id'],
-                    "attendance_date": row['Date'],
-                    "in_time": row['First IN'],
-                    "out_time": row['Last OUT'],
-                    "duration": row['Gross Hours']
-                }
-                for _, row in df.iterrows()
-            ]
-            
-            db.bulk_insert_mappings(DailyAttendance, bulk_data)
-            db.commit()
-            
-            print(f"Successfully inserted {len(bulk_data)} records for date range {df_min_date} to {df_max_date}")
+        # Bulk insert new records
+        if records_to_insert:
+            db.bulk_insert_mappings(DailyAttendance, records_to_insert)
+            inserted_count = len(records_to_insert)
+        
+        # Commit all changes (updates + inserts)
+        db.commit()
+        
+        attendance_logger.info(f"✓ Inserted: {inserted_count} new records")
+        attendance_logger.info(f"✓ Updated: {updated_count} existing records")
+        attendance_logger.info(f"✓ Total processed: {inserted_count + updated_count} records")
         
         return True
     
     except Exception as e:
-        print(f"Error loading data to database: {e}")
         if db:
             db.rollback()
+        attendance_logger.error(f"Error loading data to database: {e}")
+        import traceback
+        attendance_logger.error(traceback.format_exc())
         return False
     
     finally:
@@ -308,18 +296,16 @@ def move_file(file_path):
     try:
         # Validate file_path is not None
         if file_path is None:
-            print("Error: file_path is None")
+            attendance_logger.error("Error: file_path is None")
             return False
         
         # Validate file exists
         if not os.path.exists(file_path):
-            print(f"File not found: {file_path}")
+            attendance_logger.error(f"File not found: {file_path}")
             return False
         
-
-        
-        if not PROCESSED_FOLDER :
-            print(f"Processed_Folder not set in .env.")
+        if not PROCESSED_FOLDER:
+            attendance_logger.error(f"Processed_Folder not set in .env.")
             return False
         
         # Create processed directory
@@ -337,11 +323,11 @@ def move_file(file_path):
             new_path = os.path.join(PROCESSED_FOLDER, f"{name}_{timestamp}{ext}")
         # Move file
         os.rename(file_path, new_path)
-        print(f"File moved to: {new_path}")
+        attendance_logger.info(f"File moved to: {new_path}")
         return True
         
     except Exception as e:
-        print(f"Error moving file: {e}")
+        attendance_logger.error(f"Error moving file: {e}")
         return False
 
 def process_file():
@@ -355,31 +341,27 @@ def process_file():
         # Read file
         df, file_path = read_xls_file()
         if df is None or file_path is None:
-            print("Failed to read file")
+            attendance_logger.error("Failed to read file")
             return False
         
         # Clean data
         df_cleaned = clean_data(df)
         if df_cleaned is None or df_cleaned.empty:
-            print("Failed to clean data")
+            attendance_logger.error("Failed to clean data")
             return False
         
         # Load to database
         if not load_data_to_db(df_cleaned):
-            print("Failed to load data")
+            attendance_logger.error("Failed to load data")
             return False
         
         # Move file
         if not move_file(file_path):
-            print("Data loaded but file not moved")
+            attendance_logger.warning("Data loaded but file not moved")
         
-        print("Process completed successfully!")
+        attendance_logger.info("Process completed successfully!")
         return True
         
     except Exception as e:
-        print(f"Error: {e}")
+        attendance_logger.error(f"Error: {e}")
         return False
-
-        
-
-

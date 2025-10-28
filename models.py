@@ -63,6 +63,8 @@ class ZohoTimelogEntry(TimeStampedModel):
     timelog_date = Column(Date, nullable=False)
     project = Column(String, nullable=False)
     task = Column(String, nullable=False)
+    notes = Column(String, nullable=True)
+    task_log_id = Column(String, nullable=False)
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
     logged_hours = Column(Time, nullable=False)
