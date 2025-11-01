@@ -67,10 +67,104 @@ def is_date(value):
     except:
         return False
 
-# Example usage
+
+def extract_user_info(full_name):
+    """
+    Extracts user ID and name from full_name string.
+    Format expected: "ID - Name" (e.g., "101 - John Doe")
+    
+    Returns:
+        tuple: (id, name) or (None, None) if parsing fails
+    """
+    try:
+        parts = full_name.split('-')
+        if len(parts) < 2:
+            return None, None
+        id = parts[0].strip()
+        name = parts[1].strip()
+        return id, name
+    except Exception as e:
+        attendance_logger.error(f"Error parsing user info from '{full_name}': {e}")
+        return None, None
+
+
+def get_or_create_users_batch(user_names):
+    """
+    Batch process all unique users from the file.
+    Creates users that don't exist in a single database transaction.
+    
+    Args:
+        user_names: List of user name strings ("ID - Name" format)
+    
+    Returns:
+        dict: Mapping of user_name -> user_id
+    """
+    db = None
+    user_id_map = {}
+    
+    try:
+        db = SessionLocal()
+        
+        # Parse all user names
+        user_info = {}
+        for user_name in user_names:
+            user_id, name = extract_user_info(user_name)
+            if user_id and name:
+                user_info[user_name] = {'id': user_id, 'name': name.title()}
+        
+        if not user_info:
+            attendance_logger.warning("No valid user names found")
+            return user_id_map
+        
+        # Get all user IDs from parsed data
+        user_ids = [info['id'] for info in user_info.values()]
+        
+        # Fetch all existing users in ONE query
+        existing_users = db.query(EmployeeMaster).filter(
+            EmployeeMaster.id.in_(user_ids)
+        ).all()
+        
+        # Create mapping of existing users
+        existing_ids = {user.id for user in existing_users}
+        
+        # Build the user_id_map for existing users
+        for user_name, info in user_info.items():
+            if info['id'] in existing_ids:
+                user_id_map[user_name] = info['id']
+        
+        # Identify users that need to be created
+        new_users = []
+        for user_name, info in user_info.items():
+            if info['id'] not in existing_ids:
+                new_users.append(
+                    EmployeeMaster(id=info['id'], name=info['name'])
+                )
+                user_id_map[user_name] = info['id']
+        
+        # Bulk insert new users
+        if new_users:
+            db.bulk_save_objects(new_users)
+            db.commit()
+            attendance_logger.info(f"Created {len(new_users)} new users")
+        
+        attendance_logger.info(f"Total users processed: {len(user_id_map)}")
+        return user_id_map
+        
+    except Exception as e:
+        attendance_logger.error(f"Error in get_or_create_users_batch: {e}")
+        if db:
+            db.rollback()
+        return {}
+        
+    finally:
+        if db:
+            db.close()
+
+
 def clean_data(df):
     """
     Cleans and processes the attendance data from Excel file.
+    NOW OPTIMIZED: Creates all users in a single batch operation.
     
     Args:
         df: Raw DataFrame from Excel file
@@ -89,10 +183,26 @@ def clean_data(df):
         # Remove first 4 rows and reset index
         df_cleaned = df.iloc[4:].reset_index(drop=True)
         
-        # Initialize user_id column
-        df_cleaned['user_id'] = None
+        # STEP 1: Extract all unique user names first (no DB calls yet)
+        unique_user_names = []
+        for index, row in df_cleaned.iterrows():
+            date_value = row['Date']
+            if pd.notna(date_value) and not is_date(date_value):
+                unique_user_names.append(date_value)
         
-        user_id = None
+        # Remove duplicates
+        unique_user_names = list(set(unique_user_names))
+        attendance_logger.info(f"Found {len(unique_user_names)} unique users in file")
+        
+        # STEP 2: Batch create/fetch all users in ONE operation
+        user_id_map = get_or_create_users_batch(unique_user_names)
+        
+        if not user_id_map:
+            raise ValueError("Failed to process users")
+        
+        # STEP 3: Now process the data with the pre-loaded user_id_map
+        df_cleaned['user_id'] = None
+        current_user_id = None
         rows_to_drop = []
         
         for index, row in df_cleaned.iterrows():
@@ -100,8 +210,8 @@ def clean_data(df):
             
             # Check if the value is not a date and not NaN (indicates user name)
             if pd.notna(date_value) and not is_date(date_value):
-                # Update user_id when user name is found
-                user_id = get_or_create_user_id(date_value)
+                # Get user_id from our pre-loaded map
+                current_user_id = user_id_map.get(date_value)
                 rows_to_drop.append(index)
                 continue
             
@@ -111,7 +221,7 @@ def clean_data(df):
                 continue
             
             # Assign user_id to valid data rows
-            df_cleaned.at[index, 'user_id'] = user_id
+            df_cleaned.at[index, 'user_id'] = current_user_id
         
         # Drop invalid rows
         df_cleaned = df_cleaned.drop(rows_to_drop).reset_index(drop=True)
@@ -142,47 +252,9 @@ def clean_data(df):
         return None
     except Exception as e:
         attendance_logger.error(f"Error cleaning data: {e}")
+        import traceback
+        attendance_logger.error(traceback.format_exc())
         return None
-
-
-def get_or_create_user_id(full_name):
-    """
-    Extracts user ID and name from full_name string, and creates user if not exists.
-    Format expected: "ID - Name" (e.g., "101 - John Doe")
-    """
-    db = None
-    try:
-        # Parse full_name
-        parts = full_name.split('-')
-        id = parts[0].strip()
-        name = parts[1].strip()
-        
-        # Database operations
-        db = SessionLocal()
-        
-        # Check if user exists
-        user = db.query(EmployeeMaster).filter(EmployeeMaster.id == id).first()
-        
-        if user:
-            return user.id
-        
-        # Create new user
-        new_user = EmployeeMaster(id=id, name=name.title())
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        
-        return new_user.id
-        
-    except Exception as e:
-        attendance_logger.error(f"Error in get_or_create_user_id: {e}")
-        if db:
-            db.rollback()
-        return None
-        
-    finally:
-        if db:
-            db.close()
 
 
 def load_data_to_db(df):

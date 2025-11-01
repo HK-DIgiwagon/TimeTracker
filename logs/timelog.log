@@ -1,0 +1,687 @@
+2025-10-27 11:54:28,560 - INFO - Triggered /process-timelog for range 2025-09-01 → 2025-09-30
+2025-10-27 11:54:28,560 - INFO - Access token obtained successfully
+2025-10-27 11:54:28,561 - INFO - Fetching timelogs from 2025-09-01 to 2025-09-30...
+2025-10-27 11:54:28,561 - INFO - Fetching data for: 2025-09-01
+2025-10-27 11:54:28,796 - INFO - Found 76 log entries for 2025-09-01
+2025-10-27 11:54:28,797 - INFO - Fetching data for: 2025-09-02
+2025-10-27 11:54:29,016 - INFO - Found 78 log entries for 2025-09-02
+2025-10-27 11:54:29,017 - INFO - Fetching data for: 2025-09-03
+2025-10-27 11:54:29,225 - INFO - Found 86 log entries for 2025-09-03
+2025-10-27 11:54:29,226 - INFO - Fetching data for: 2025-09-04
+2025-10-27 11:54:29,453 - INFO - Found 79 log entries for 2025-09-04
+2025-10-27 11:54:29,453 - INFO - Fetching data for: 2025-09-05
+2025-10-27 11:54:29,655 - INFO - Found 2 log entries for 2025-09-05
+2025-10-27 11:54:29,656 - INFO - Fetching data for: 2025-09-06
+2025-10-27 11:54:29,840 - INFO - No logs found for 2025-09-06
+2025-10-27 11:54:29,840 - INFO - Fetching data for: 2025-09-07
+2025-10-27 11:54:30,335 - INFO - No logs found for 2025-09-07
+2025-10-27 11:54:30,336 - INFO - Fetching data for: 2025-09-08
+2025-10-27 11:54:30,599 - INFO - Found 85 log entries for 2025-09-08
+2025-10-27 11:54:30,632 - INFO - Fetching data for: 2025-09-09
+2025-10-27 11:54:30,893 - INFO - Found 92 log entries for 2025-09-09
+2025-10-27 11:54:30,893 - INFO - Fetching data for: 2025-09-10
+2025-10-27 11:54:31,133 - INFO - Found 80 log entries for 2025-09-10
+2025-10-27 11:54:31,133 - INFO - Fetching data for: 2025-09-11
+2025-10-27 11:54:31,385 - INFO - Found 83 log entries for 2025-09-11
+2025-10-27 11:54:31,386 - INFO - Fetching data for: 2025-09-12
+2025-10-27 11:54:31,626 - INFO - Found 100 log entries for 2025-09-12
+2025-10-27 11:54:31,627 - INFO - Fetching data for: 2025-09-13
+2025-10-27 11:54:31,826 - INFO - No logs found for 2025-09-13
+2025-10-27 11:54:31,826 - INFO - Fetching data for: 2025-09-14
+2025-10-27 11:54:32,059 - INFO - No logs found for 2025-09-14
+2025-10-27 11:54:32,059 - INFO - Fetching data for: 2025-09-15
+2025-10-27 11:54:32,289 - INFO - Found 80 log entries for 2025-09-15
+2025-10-27 11:54:32,290 - INFO - Fetching data for: 2025-09-16
+2025-10-27 11:54:33,275 - INFO - Found 103 log entries for 2025-09-16
+2025-10-27 11:54:33,275 - INFO - Fetching data for: 2025-09-17
+2025-10-27 11:54:33,517 - INFO - Found 77 log entries for 2025-09-17
+2025-10-27 11:54:33,518 - INFO - Fetching data for: 2025-09-18
+2025-10-27 11:54:33,765 - INFO - Found 86 log entries for 2025-09-18
+2025-10-27 11:54:33,766 - INFO - Fetching data for: 2025-09-19
+2025-10-27 11:54:34,037 - INFO - Found 109 log entries for 2025-09-19
+2025-10-27 11:54:34,038 - INFO - Fetching data for: 2025-09-20
+2025-10-27 11:54:34,222 - INFO - Found 3 log entries for 2025-09-20
+2025-10-27 11:54:34,223 - INFO - Fetching data for: 2025-09-21
+2025-10-27 11:54:34,424 - INFO - No logs found for 2025-09-21
+2025-10-27 11:54:34,425 - INFO - Fetching data for: 2025-09-22
+2025-10-27 11:54:34,644 - INFO - Found 75 log entries for 2025-09-22
+2025-10-27 11:54:34,645 - INFO - Fetching data for: 2025-09-23
+2025-10-27 11:54:34,861 - INFO - Found 83 log entries for 2025-09-23
+2025-10-27 11:54:34,862 - INFO - Fetching data for: 2025-09-24
+2025-10-27 11:54:35,138 - INFO - Found 89 log entries for 2025-09-24
+2025-10-27 11:54:35,138 - INFO - Fetching data for: 2025-09-25
+2025-10-27 11:54:35,386 - INFO - Found 81 log entries for 2025-09-25
+2025-10-27 11:54:35,387 - INFO - Fetching data for: 2025-09-26
+2025-10-27 11:54:35,653 - INFO - Found 106 log entries for 2025-09-26
+2025-10-27 11:54:35,654 - INFO - Fetching data for: 2025-09-27
+2025-10-27 11:54:35,835 - INFO - No logs found for 2025-09-27
+2025-10-27 11:54:35,836 - INFO - Fetching data for: 2025-09-28
+2025-10-27 11:54:36,026 - INFO - Found 1 log entries for 2025-09-28
+2025-10-27 11:54:36,027 - INFO - Fetching data for: 2025-09-29
+2025-10-27 11:54:36,246 - INFO - Found 87 log entries for 2025-09-29
+2025-10-27 11:54:36,247 - INFO - Fetching data for: 2025-09-30
+2025-10-27 11:54:36,499 - INFO - Found 104 log entries for 2025-09-30
+2025-10-27 11:54:36,500 - INFO - Total days processed: 30
+2025-10-27 11:54:36,500 - INFO - Total log entries found: 1845
+2025-10-27 11:54:36,944 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:36,945 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,214 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,215 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,335 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,335 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,385 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:37,385 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:54:40,559 - INFO - Inserted 0 new timelogs.
+2025-10-27 11:54:40,559 - INFO - Updated 1841 existing timelogs.
+2025-10-27 11:54:40,560 - WARNING - Skipped 4 timelogs due to errors or missing data.
+2025-10-27 11:54:40,560 - INFO - Timelog data processed and saved successfully.
+2025-10-27 11:54:40,563 - INFO - Timelog data processed successfully
+2025-10-27 11:55:40,281 - INFO - Triggered /process-timelog for range 2025-09-01 → 2025-09-30
+2025-10-27 11:55:40,282 - INFO - Access token obtained successfully
+2025-10-27 11:55:40,282 - INFO - Fetching timelogs from 2025-09-01 to 2025-09-30...
+2025-10-27 11:55:40,282 - INFO - Fetching data for: 2025-09-01
+2025-10-27 11:55:40,480 - INFO - Found 76 log entries for 2025-09-01
+2025-10-27 11:55:40,481 - INFO - Fetching data for: 2025-09-02
+2025-10-27 11:55:40,696 - INFO - Found 78 log entries for 2025-09-02
+2025-10-27 11:55:40,696 - INFO - Fetching data for: 2025-09-03
+2025-10-27 11:55:40,900 - INFO - Found 86 log entries for 2025-09-03
+2025-10-27 11:55:40,900 - INFO - Fetching data for: 2025-09-04
+2025-10-27 11:55:41,116 - INFO - Found 79 log entries for 2025-09-04
+2025-10-27 11:55:41,116 - INFO - Fetching data for: 2025-09-05
+2025-10-27 11:55:41,277 - INFO - Found 2 log entries for 2025-09-05
+2025-10-27 11:55:41,277 - INFO - Fetching data for: 2025-09-06
+2025-10-27 11:55:41,455 - INFO - No logs found for 2025-09-06
+2025-10-27 11:55:41,455 - INFO - Fetching data for: 2025-09-07
+2025-10-27 11:55:41,614 - INFO - No logs found for 2025-09-07
+2025-10-27 11:55:41,615 - INFO - Fetching data for: 2025-09-08
+2025-10-27 11:55:41,885 - INFO - Found 85 log entries for 2025-09-08
+2025-10-27 11:55:41,885 - INFO - Fetching data for: 2025-09-09
+2025-10-27 11:55:42,124 - INFO - Found 92 log entries for 2025-09-09
+2025-10-27 11:55:42,125 - INFO - Fetching data for: 2025-09-10
+2025-10-27 11:55:42,334 - INFO - Found 80 log entries for 2025-09-10
+2025-10-27 11:55:42,334 - INFO - Fetching data for: 2025-09-11
+2025-10-27 11:55:42,602 - INFO - Found 83 log entries for 2025-09-11
+2025-10-27 11:55:42,603 - INFO - Fetching data for: 2025-09-12
+2025-10-27 11:55:42,836 - INFO - Found 100 log entries for 2025-09-12
+2025-10-27 11:55:42,837 - INFO - Fetching data for: 2025-09-13
+2025-10-27 11:55:43,019 - INFO - No logs found for 2025-09-13
+2025-10-27 11:55:43,020 - INFO - Fetching data for: 2025-09-14
+2025-10-27 11:55:43,164 - INFO - No logs found for 2025-09-14
+2025-10-27 11:55:43,164 - INFO - Fetching data for: 2025-09-15
+2025-10-27 11:55:43,375 - INFO - Found 80 log entries for 2025-09-15
+2025-10-27 11:55:43,375 - INFO - Fetching data for: 2025-09-16
+2025-10-27 11:55:43,645 - INFO - Found 103 log entries for 2025-09-16
+2025-10-27 11:55:43,645 - INFO - Fetching data for: 2025-09-17
+2025-10-27 11:55:43,845 - INFO - Found 77 log entries for 2025-09-17
+2025-10-27 11:55:43,845 - INFO - Fetching data for: 2025-09-18
+2025-10-27 11:55:44,081 - INFO - Found 86 log entries for 2025-09-18
+2025-10-27 11:55:44,082 - INFO - Fetching data for: 2025-09-19
+2025-10-27 11:55:44,320 - INFO - Found 109 log entries for 2025-09-19
+2025-10-27 11:55:44,321 - INFO - Fetching data for: 2025-09-20
+2025-10-27 11:55:44,519 - INFO - Found 3 log entries for 2025-09-20
+2025-10-27 11:55:44,520 - INFO - Fetching data for: 2025-09-21
+2025-10-27 11:55:44,720 - INFO - No logs found for 2025-09-21
+2025-10-27 11:55:44,720 - INFO - Fetching data for: 2025-09-22
+2025-10-27 11:55:44,936 - INFO - Found 75 log entries for 2025-09-22
+2025-10-27 11:55:44,936 - INFO - Fetching data for: 2025-09-23
+2025-10-27 11:55:45,259 - INFO - Found 83 log entries for 2025-09-23
+2025-10-27 11:55:45,260 - INFO - Fetching data for: 2025-09-24
+2025-10-27 11:55:45,486 - INFO - Found 89 log entries for 2025-09-24
+2025-10-27 11:55:45,487 - INFO - Fetching data for: 2025-09-25
+2025-10-27 11:55:45,711 - INFO - Found 81 log entries for 2025-09-25
+2025-10-27 11:55:45,712 - INFO - Fetching data for: 2025-09-26
+2025-10-27 11:55:45,930 - INFO - Found 106 log entries for 2025-09-26
+2025-10-27 11:55:45,931 - INFO - Fetching data for: 2025-09-27
+2025-10-27 11:55:46,125 - INFO - No logs found for 2025-09-27
+2025-10-27 11:55:46,125 - INFO - Fetching data for: 2025-09-28
+2025-10-27 11:55:46,290 - INFO - Found 1 log entries for 2025-09-28
+2025-10-27 11:55:46,291 - INFO - Fetching data for: 2025-09-29
+2025-10-27 11:55:46,502 - INFO - Found 87 log entries for 2025-09-29
+2025-10-27 11:55:46,502 - INFO - Fetching data for: 2025-09-30
+2025-10-27 11:55:46,732 - INFO - Found 104 log entries for 2025-09-30
+2025-10-27 11:55:46,732 - INFO - Total days processed: 30
+2025-10-27 11:55:46,733 - INFO - Total log entries found: 1845
+2025-10-27 11:56:02,718 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:02,733 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:11,139 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:11,153 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:14,818 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:14,834 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:16,449 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-27 11:56:16,463 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-27 11:58:11,960 - INFO - Inserted 0 new timelogs.
+2025-10-27 11:58:11,960 - INFO - Updated 1841 existing timelogs.
+2025-10-27 11:58:11,960 - WARNING - Skipped 4 timelogs due to errors or missing data.
+2025-10-27 11:58:11,961 - INFO - Timelog data processed and saved successfully.
+2025-10-27 11:58:11,964 - INFO - Timelog data processed successfully
+2025-10-28 11:09:34,229 - INFO - Triggered /process-timelog for range 2025-09-01 → 2025-09-30
+2025-10-28 11:09:34,620 - INFO - Access token obtained successfully
+2025-10-28 11:09:34,622 - INFO - Fetching timelogs from 2025-09-01 to 2025-09-30...
+2025-10-28 11:09:34,623 - INFO - Fetching data for: 2025-09-01
+2025-10-28 11:09:34,977 - INFO - Found 76 log entries for 2025-09-01
+2025-10-28 11:09:34,978 - INFO - Fetching data for: 2025-09-02
+2025-10-28 11:09:35,314 - INFO - Found 78 log entries for 2025-09-02
+2025-10-28 11:09:35,315 - INFO - Fetching data for: 2025-09-03
+2025-10-28 11:09:35,894 - INFO - Found 86 log entries for 2025-09-03
+2025-10-28 11:09:35,895 - INFO - Fetching data for: 2025-09-04
+2025-10-28 11:09:36,228 - INFO - Found 79 log entries for 2025-09-04
+2025-10-28 11:09:36,232 - INFO - Fetching data for: 2025-09-05
+2025-10-28 11:09:36,726 - INFO - Found 2 log entries for 2025-09-05
+2025-10-28 11:09:36,727 - INFO - Fetching data for: 2025-09-06
+2025-10-28 11:09:36,946 - INFO - No logs found for 2025-09-06
+2025-10-28 11:09:36,947 - INFO - Fetching data for: 2025-09-07
+2025-10-28 11:09:37,171 - INFO - No logs found for 2025-09-07
+2025-10-28 11:09:37,172 - INFO - Fetching data for: 2025-09-08
+2025-10-28 11:09:37,449 - INFO - Found 85 log entries for 2025-09-08
+2025-10-28 11:09:37,449 - INFO - Fetching data for: 2025-09-09
+2025-10-28 11:09:37,712 - INFO - Found 92 log entries for 2025-09-09
+2025-10-28 11:09:37,713 - INFO - Fetching data for: 2025-09-10
+2025-10-28 11:09:38,000 - INFO - Found 80 log entries for 2025-09-10
+2025-10-28 11:09:38,002 - INFO - Fetching data for: 2025-09-11
+2025-10-28 11:09:38,292 - INFO - Found 83 log entries for 2025-09-11
+2025-10-28 11:09:38,293 - INFO - Fetching data for: 2025-09-12
+2025-10-28 11:09:38,679 - INFO - Found 100 log entries for 2025-09-12
+2025-10-28 11:09:38,682 - INFO - Fetching data for: 2025-09-13
+2025-10-28 11:09:38,968 - INFO - No logs found for 2025-09-13
+2025-10-28 11:09:38,968 - INFO - Fetching data for: 2025-09-14
+2025-10-28 11:09:39,202 - INFO - No logs found for 2025-09-14
+2025-10-28 11:09:39,203 - INFO - Fetching data for: 2025-09-15
+2025-10-28 11:09:39,484 - INFO - Found 80 log entries for 2025-09-15
+2025-10-28 11:09:39,487 - INFO - Fetching data for: 2025-09-16
+2025-10-28 11:09:39,819 - INFO - Found 103 log entries for 2025-09-16
+2025-10-28 11:09:39,820 - INFO - Fetching data for: 2025-09-17
+2025-10-28 11:09:40,191 - INFO - Found 77 log entries for 2025-09-17
+2025-10-28 11:09:40,192 - INFO - Fetching data for: 2025-09-18
+2025-10-28 11:09:40,600 - INFO - Found 86 log entries for 2025-09-18
+2025-10-28 11:09:40,601 - INFO - Fetching data for: 2025-09-19
+2025-10-28 11:09:40,936 - INFO - Found 109 log entries for 2025-09-19
+2025-10-28 11:09:40,938 - INFO - Fetching data for: 2025-09-20
+2025-10-28 11:09:41,225 - INFO - Found 3 log entries for 2025-09-20
+2025-10-28 11:09:41,226 - INFO - Fetching data for: 2025-09-21
+2025-10-28 11:09:41,493 - INFO - No logs found for 2025-09-21
+2025-10-28 11:09:41,494 - INFO - Fetching data for: 2025-09-22
+2025-10-28 11:09:41,808 - INFO - Found 75 log entries for 2025-09-22
+2025-10-28 11:09:41,809 - INFO - Fetching data for: 2025-09-23
+2025-10-28 11:09:42,242 - INFO - Found 83 log entries for 2025-09-23
+2025-10-28 11:09:42,243 - INFO - Fetching data for: 2025-09-24
+2025-10-28 11:09:42,528 - INFO - Found 89 log entries for 2025-09-24
+2025-10-28 11:09:42,529 - INFO - Fetching data for: 2025-09-25
+2025-10-28 11:09:42,862 - INFO - Found 81 log entries for 2025-09-25
+2025-10-28 11:09:42,863 - INFO - Fetching data for: 2025-09-26
+2025-10-28 11:09:43,121 - INFO - Found 106 log entries for 2025-09-26
+2025-10-28 11:09:43,122 - INFO - Fetching data for: 2025-09-27
+2025-10-28 11:09:43,374 - INFO - No logs found for 2025-09-27
+2025-10-28 11:09:43,375 - INFO - Fetching data for: 2025-09-28
+2025-10-28 11:09:43,650 - INFO - Found 1 log entries for 2025-09-28
+2025-10-28 11:09:43,652 - INFO - Fetching data for: 2025-09-29
+2025-10-28 11:09:43,986 - INFO - Found 87 log entries for 2025-09-29
+2025-10-28 11:09:43,987 - INFO - Fetching data for: 2025-09-30
+2025-10-28 11:09:44,289 - INFO - Found 104 log entries for 2025-09-30
+2025-10-28 11:09:44,290 - INFO - Total days processed: 30
+2025-10-28 11:09:44,290 - INFO - Total log entries found: 1845
+2025-10-28 11:10:01,922 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:01,938 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:12,181 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:12,197 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:17,722 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:17,740 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:19,506 - WARNING - No employee found with email: shaival.bhojak@digiwagon.com
+2025-10-28 11:10:19,541 - WARNING - Skipping unknown user: shaival.bhojak@digiwagon.com
+2025-10-28 11:11:51,990 - INFO - Inserted 1841 new timelogs.
+2025-10-28 11:11:51,990 - INFO - Updated 0 existing timelogs.
+2025-10-28 11:11:51,990 - WARNING - Skipped 4 timelogs due to errors or missing data.
+2025-10-28 11:11:51,991 - INFO - Timelog data processed and saved successfully.
+2025-10-28 11:11:51,993 - INFO - Timelog data processed successfully
+2025-10-28 11:24:37,993 - INFO - Triggered /process-timelog for range 2025-10-01 → 2025-10-27
+2025-10-28 11:24:38,199 - INFO - Access token obtained successfully
+2025-10-28 11:24:38,200 - INFO - Fetching timelogs from 2025-10-01 to 2025-10-27...
+2025-10-28 11:24:38,200 - INFO - Fetching data for: 2025-10-01
+2025-10-28 11:24:38,511 - INFO - Found 89 log entries for 2025-10-01
+2025-10-28 11:24:38,512 - INFO - Fetching data for: 2025-10-02
+2025-10-28 11:24:38,699 - INFO - No logs found for 2025-10-02
+2025-10-28 11:24:38,700 - INFO - Fetching data for: 2025-10-03
+2025-10-28 11:24:38,956 - INFO - Found 101 log entries for 2025-10-03
+2025-10-28 11:24:38,957 - INFO - Fetching data for: 2025-10-04
+2025-10-28 11:24:39,160 - INFO - Found 15 log entries for 2025-10-04
+2025-10-28 11:24:39,161 - INFO - Fetching data for: 2025-10-05
+2025-10-28 11:24:39,367 - INFO - No logs found for 2025-10-05
+2025-10-28 11:24:39,368 - INFO - Fetching data for: 2025-10-06
+2025-10-28 11:24:39,587 - INFO - Found 93 log entries for 2025-10-06
+2025-10-28 11:24:39,588 - INFO - Fetching data for: 2025-10-07
+2025-10-28 11:24:39,813 - INFO - Found 94 log entries for 2025-10-07
+2025-10-28 11:24:39,814 - INFO - Fetching data for: 2025-10-08
+2025-10-28 11:24:40,110 - INFO - Found 96 log entries for 2025-10-08
+2025-10-28 11:24:40,110 - INFO - Fetching data for: 2025-10-09
+2025-10-28 11:24:40,356 - INFO - Found 101 log entries for 2025-10-09
+2025-10-28 11:24:40,356 - INFO - Fetching data for: 2025-10-10
+2025-10-28 11:24:40,622 - INFO - Found 92 log entries for 2025-10-10
+2025-10-28 11:24:40,623 - INFO - Fetching data for: 2025-10-11
+2025-10-28 11:24:40,877 - INFO - Found 99 log entries for 2025-10-11
+2025-10-28 11:24:40,877 - INFO - Fetching data for: 2025-10-12
+2025-10-28 11:24:41,096 - INFO - No logs found for 2025-10-12
+2025-10-28 11:24:41,097 - INFO - Fetching data for: 2025-10-13
+2025-10-28 11:24:41,372 - INFO - Found 100 log entries for 2025-10-13
+2025-10-28 11:24:41,373 - INFO - Fetching data for: 2025-10-14
+2025-10-28 11:24:41,637 - INFO - Found 121 log entries for 2025-10-14
+2025-10-28 11:24:41,638 - INFO - Fetching data for: 2025-10-15
+2025-10-28 11:24:41,933 - INFO - Found 93 log entries for 2025-10-15
+2025-10-28 11:24:41,934 - INFO - Fetching data for: 2025-10-16
+2025-10-28 11:24:42,202 - INFO - Found 87 log entries for 2025-10-16
+2025-10-28 11:24:42,203 - INFO - Fetching data for: 2025-10-17
+2025-10-28 11:24:42,443 - INFO - Found 77 log entries for 2025-10-17
+2025-10-28 11:24:42,443 - INFO - Fetching data for: 2025-10-18
+2025-10-28 11:24:42,665 - INFO - Found 2 log entries for 2025-10-18
+2025-10-28 11:24:42,665 - INFO - Fetching data for: 2025-10-19
+2025-10-28 11:24:42,836 - INFO - No logs found for 2025-10-19
+2025-10-28 11:24:42,836 - INFO - Fetching data for: 2025-10-20
+2025-10-28 11:24:43,006 - INFO - No logs found for 2025-10-20
+2025-10-28 11:24:43,007 - INFO - Fetching data for: 2025-10-21
+2025-10-28 11:24:43,195 - INFO - No logs found for 2025-10-21
+2025-10-28 11:24:43,196 - INFO - Fetching data for: 2025-10-22
+2025-10-28 11:24:43,383 - INFO - No logs found for 2025-10-22
+2025-10-28 11:24:43,383 - INFO - Fetching data for: 2025-10-23
+2025-10-28 11:24:43,543 - INFO - No logs found for 2025-10-23
+2025-10-28 11:24:43,543 - INFO - Fetching data for: 2025-10-24
+2025-10-28 11:24:43,731 - INFO - Found 47 log entries for 2025-10-24
+2025-10-28 11:24:43,731 - INFO - Fetching data for: 2025-10-25
+2025-10-28 11:24:43,907 - INFO - No logs found for 2025-10-25
+2025-10-28 11:24:43,908 - INFO - Fetching data for: 2025-10-26
+2025-10-28 11:24:44,141 - INFO - No logs found for 2025-10-26
+2025-10-28 11:24:44,142 - INFO - Fetching data for: 2025-10-27
+2025-10-28 11:24:44,397 - INFO - Found 96 log entries for 2025-10-27
+2025-10-28 11:24:44,398 - INFO - Total days processed: 27
+2025-10-28 11:24:44,398 - INFO - Total log entries found: 1403
+2025-10-28 11:26:20,366 - INFO - Inserted 1403 new timelogs.
+2025-10-28 11:26:20,367 - INFO - Updated 0 existing timelogs.
+2025-10-28 11:26:20,367 - INFO - Timelog data processed and saved successfully.
+2025-10-28 11:26:20,369 - INFO - Timelog data processed successfully
+2025-10-31 05:18:11,789 - INFO - Triggered /process-timelog for range 2025-10-01 → 2025-10-30
+2025-10-31 05:18:11,960 - INFO - Access token obtained successfully
+2025-10-31 05:18:11,961 - INFO - Fetching timelogs from 2025-10-01 to 2025-10-30...
+2025-10-31 05:18:11,961 - INFO - Fetching data for: 2025-10-01
+2025-10-31 05:18:12,260 - INFO - Found 89 log entries for 2025-10-01
+2025-10-31 05:18:12,261 - INFO - Fetching data for: 2025-10-02
+2025-10-31 05:18:12,424 - INFO - No logs found for 2025-10-02
+2025-10-31 05:18:12,425 - INFO - Fetching data for: 2025-10-03
+2025-10-31 05:18:12,674 - INFO - Found 105 log entries for 2025-10-03
+2025-10-31 05:18:12,675 - INFO - Fetching data for: 2025-10-04
+2025-10-31 05:18:12,880 - INFO - Found 15 log entries for 2025-10-04
+2025-10-31 05:18:12,880 - INFO - Fetching data for: 2025-10-05
+2025-10-31 05:18:13,039 - INFO - No logs found for 2025-10-05
+2025-10-31 05:18:13,040 - INFO - Fetching data for: 2025-10-06
+2025-10-31 05:18:13,248 - INFO - Found 93 log entries for 2025-10-06
+2025-10-31 05:18:13,249 - INFO - Fetching data for: 2025-10-07
+2025-10-31 05:18:13,505 - INFO - Found 94 log entries for 2025-10-07
+2025-10-31 05:18:13,506 - INFO - Fetching data for: 2025-10-08
+2025-10-31 05:18:13,762 - INFO - Found 96 log entries for 2025-10-08
+2025-10-31 05:18:13,762 - INFO - Fetching data for: 2025-10-09
+2025-10-31 05:18:13,994 - INFO - Found 106 log entries for 2025-10-09
+2025-10-31 05:18:13,995 - INFO - Fetching data for: 2025-10-10
+2025-10-31 05:18:14,202 - INFO - Found 96 log entries for 2025-10-10
+2025-10-31 05:18:14,203 - INFO - Fetching data for: 2025-10-11
+2025-10-31 05:18:14,407 - INFO - Found 99 log entries for 2025-10-11
+2025-10-31 05:18:14,407 - INFO - Fetching data for: 2025-10-12
+2025-10-31 05:18:14,596 - INFO - No logs found for 2025-10-12
+2025-10-31 05:18:14,597 - INFO - Fetching data for: 2025-10-13
+2025-10-31 05:18:14,826 - INFO - Found 100 log entries for 2025-10-13
+2025-10-31 05:18:14,827 - INFO - Fetching data for: 2025-10-14
+2025-10-31 05:18:15,087 - INFO - Found 121 log entries for 2025-10-14
+2025-10-31 05:18:15,087 - INFO - Fetching data for: 2025-10-15
+2025-10-31 05:18:15,352 - INFO - Found 93 log entries for 2025-10-15
+2025-10-31 05:18:15,352 - INFO - Fetching data for: 2025-10-16
+2025-10-31 05:18:15,677 - INFO - Found 91 log entries for 2025-10-16
+2025-10-31 05:18:15,678 - INFO - Fetching data for: 2025-10-17
+2025-10-31 05:18:15,885 - INFO - Found 77 log entries for 2025-10-17
+2025-10-31 05:18:15,886 - INFO - Fetching data for: 2025-10-18
+2025-10-31 05:18:16,079 - INFO - Found 2 log entries for 2025-10-18
+2025-10-31 05:18:16,080 - INFO - Fetching data for: 2025-10-19
+2025-10-31 05:18:16,241 - INFO - No logs found for 2025-10-19
+2025-10-31 05:18:16,241 - INFO - Fetching data for: 2025-10-20
+2025-10-31 05:18:16,464 - INFO - No logs found for 2025-10-20
+2025-10-31 05:18:16,464 - INFO - Fetching data for: 2025-10-21
+2025-10-31 05:18:17,451 - INFO - No logs found for 2025-10-21
+2025-10-31 05:18:17,452 - INFO - Fetching data for: 2025-10-22
+2025-10-31 05:18:17,614 - INFO - No logs found for 2025-10-22
+2025-10-31 05:18:17,615 - INFO - Fetching data for: 2025-10-23
+2025-10-31 05:18:17,788 - INFO - No logs found for 2025-10-23
+2025-10-31 05:18:17,788 - INFO - Fetching data for: 2025-10-24
+2025-10-31 05:18:18,008 - INFO - Found 47 log entries for 2025-10-24
+2025-10-31 05:18:18,008 - INFO - Fetching data for: 2025-10-25
+2025-10-31 05:18:18,197 - INFO - No logs found for 2025-10-25
+2025-10-31 05:18:18,198 - INFO - Fetching data for: 2025-10-26
+2025-10-31 05:18:18,372 - INFO - No logs found for 2025-10-26
+2025-10-31 05:18:18,373 - INFO - Fetching data for: 2025-10-27
+2025-10-31 05:18:18,588 - INFO - Found 96 log entries for 2025-10-27
+2025-10-31 05:18:18,588 - INFO - Fetching data for: 2025-10-28
+2025-10-31 05:18:18,793 - INFO - Found 106 log entries for 2025-10-28
+2025-10-31 05:18:18,794 - INFO - Fetching data for: 2025-10-29
+2025-10-31 05:18:19,100 - INFO - Found 116 log entries for 2025-10-29
+2025-10-31 05:18:19,100 - INFO - Fetching data for: 2025-10-30
+2025-10-31 05:18:19,310 - INFO - Found 74 log entries for 2025-10-30
+2025-10-31 05:18:19,310 - INFO - Total days processed: 30
+2025-10-31 05:18:19,311 - INFO - Total log entries found: 1716
+2025-10-31 05:20:26,859 - INFO - Inserted 313 new timelogs.
+2025-10-31 05:20:26,860 - INFO - Updated 1403 existing timelogs.
+2025-10-31 05:20:26,860 - INFO - Timelog data processed and saved successfully.
+2025-10-31 05:20:26,863 - INFO - Timelog data processed successfully
+2025-10-31 11:17:52,018 - INFO - Triggered /process-timelog for range 2025-08-01 → 2025-08-31
+2025-10-31 11:17:52,594 - INFO - Access token obtained successfully
+2025-10-31 11:17:52,596 - INFO - Fetching timelogs from 2025-08-01 to 2025-08-31...
+2025-10-31 11:17:52,596 - INFO - Fetching data for: 2025-08-01
+2025-10-31 11:17:53,121 - INFO - Found 79 log entries for 2025-08-01
+2025-10-31 11:17:53,123 - INFO - Fetching data for: 2025-08-02
+2025-10-31 11:17:53,571 - INFO - Found 23 log entries for 2025-08-02
+2025-10-31 11:17:53,573 - INFO - Fetching data for: 2025-08-03
+2025-10-31 11:17:54,384 - INFO - No logs found for 2025-08-03
+2025-10-31 11:17:54,385 - INFO - Fetching data for: 2025-08-04
+2025-10-31 11:17:55,496 - INFO - Found 90 log entries for 2025-08-04
+2025-10-31 11:17:55,497 - INFO - Fetching data for: 2025-08-05
+2025-10-31 11:17:57,208 - INFO - Found 96 log entries for 2025-08-05
+2025-10-31 11:17:57,209 - INFO - Fetching data for: 2025-08-06
+2025-10-31 11:17:58,340 - INFO - Found 92 log entries for 2025-08-06
+2025-10-31 11:17:58,341 - INFO - Fetching data for: 2025-08-07
+2025-10-31 11:17:59,877 - INFO - Found 102 log entries for 2025-08-07
+2025-10-31 11:17:59,878 - INFO - Fetching data for: 2025-08-08
+2025-10-31 11:18:01,211 - INFO - Found 85 log entries for 2025-08-08
+2025-10-31 11:18:01,213 - INFO - Fetching data for: 2025-08-09
+2025-10-31 11:18:02,649 - INFO - Found 4 log entries for 2025-08-09
+2025-10-31 11:18:02,650 - INFO - Fetching data for: 2025-08-10
+2025-10-31 11:18:04,529 - INFO - Found 2 log entries for 2025-08-10
+2025-10-31 11:18:04,529 - INFO - Fetching data for: 2025-08-11
+2025-10-31 11:18:05,166 - INFO - Found 83 log entries for 2025-08-11
+2025-10-31 11:18:05,167 - INFO - Fetching data for: 2025-08-12
+2025-10-31 11:18:05,482 - INFO - Found 67 log entries for 2025-08-12
+2025-10-31 11:18:05,483 - INFO - Fetching data for: 2025-08-13
+2025-10-31 11:18:06,273 - INFO - Found 83 log entries for 2025-08-13
+2025-10-31 11:18:06,274 - INFO - Fetching data for: 2025-08-14
+2025-10-31 11:18:06,574 - INFO - Found 89 log entries for 2025-08-14
+2025-10-31 11:18:06,575 - INFO - Fetching data for: 2025-08-15
+2025-10-31 11:18:07,353 - INFO - Found 2 log entries for 2025-08-15
+2025-10-31 11:18:07,354 - INFO - Fetching data for: 2025-08-16
+2025-10-31 11:18:08,168 - INFO - Found 5 log entries for 2025-08-16
+2025-10-31 11:18:08,168 - INFO - Fetching data for: 2025-08-17
+2025-10-31 11:18:09,196 - INFO - Found 2 log entries for 2025-08-17
+2025-10-31 11:18:09,197 - INFO - Fetching data for: 2025-08-18
+2025-10-31 11:18:09,658 - INFO - Found 96 log entries for 2025-08-18
+2025-10-31 11:18:09,659 - INFO - Fetching data for: 2025-08-19
+2025-10-31 11:18:09,926 - INFO - Found 73 log entries for 2025-08-19
+2025-10-31 11:18:09,928 - INFO - Fetching data for: 2025-08-20
+2025-10-31 11:18:10,838 - INFO - Found 86 log entries for 2025-08-20
+2025-10-31 11:18:10,839 - INFO - Fetching data for: 2025-08-21
+2025-10-31 11:18:11,801 - INFO - Found 88 log entries for 2025-08-21
+2025-10-31 11:18:11,802 - INFO - Fetching data for: 2025-08-22
+2025-10-31 11:18:12,136 - INFO - Found 82 log entries for 2025-08-22
+2025-10-31 11:18:12,137 - INFO - Fetching data for: 2025-08-23
+2025-10-31 11:18:12,360 - INFO - Found 15 log entries for 2025-08-23
+2025-10-31 11:18:12,361 - INFO - Fetching data for: 2025-08-24
+2025-10-31 11:18:12,981 - INFO - Found 4 log entries for 2025-08-24
+2025-10-31 11:18:12,982 - INFO - Fetching data for: 2025-08-25
+2025-10-31 11:18:13,760 - INFO - Found 81 log entries for 2025-08-25
+2025-10-31 11:18:13,761 - INFO - Fetching data for: 2025-08-26
+2025-10-31 11:18:14,617 - INFO - Found 76 log entries for 2025-08-26
+2025-10-31 11:18:14,617 - INFO - Fetching data for: 2025-08-27
+2025-10-31 11:18:15,133 - INFO - Found 4 log entries for 2025-08-27
+2025-10-31 11:18:15,134 - INFO - Fetching data for: 2025-08-28
+2025-10-31 11:18:15,500 - INFO - Found 94 log entries for 2025-08-28
+2025-10-31 11:18:15,501 - INFO - Fetching data for: 2025-08-29
+2025-10-31 11:18:16,266 - INFO - Found 73 log entries for 2025-08-29
+2025-10-31 11:18:16,267 - INFO - Fetching data for: 2025-08-30
+2025-10-31 11:18:16,510 - INFO - Found 54 log entries for 2025-08-30
+2025-10-31 11:18:16,511 - INFO - Fetching data for: 2025-08-31
+2025-10-31 11:18:16,941 - INFO - No logs found for 2025-08-31
+2025-10-31 11:18:16,942 - INFO - Total days processed: 31
+2025-10-31 11:18:16,943 - INFO - Total log entries found: 1730
+2025-10-31 11:18:16,975 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:16,993 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:17,764 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:17,778 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:19,845 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:19,860 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:20,497 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:20,514 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:24,668 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:24,683 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:24,778 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:24,797 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:26,073 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:26,090 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:27,732 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:27,748 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:43,198 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:43,217 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:43,251 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:43,269 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:43,368 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:43,386 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:51,589 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:51,605 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:51,712 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:51,727 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:51,764 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:51,780 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:51,810 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:51,825 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:57,475 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:57,490 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:18:57,905 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:18:57,925 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:02,588 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:02,603 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:03,124 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:03,139 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:07,619 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:07,635 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:07,667 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:07,682 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:07,713 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:07,729 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:13,052 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:13,068 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:13,829 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:13,845 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:20,286 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:20,302 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:20,395 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:20,410 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:20,813 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:20,830 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:25,667 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:25,686 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:30,214 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:30,228 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:30,323 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:30,339 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:30,494 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:30,511 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:35,592 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:35,608 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:19:35,890 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 11:19:35,906 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 11:20:13,966 - INFO - Inserted 1697 new timelogs.
+2025-10-31 11:20:13,967 - INFO - Updated 0 existing timelogs.
+2025-10-31 11:20:13,967 - WARNING - Skipped 33 timelogs due to errors or missing data.
+2025-10-31 11:20:13,968 - INFO - Timelog data processed and saved successfully.
+2025-10-31 11:20:13,973 - INFO - Timelog data processed successfully
+2025-10-31 12:18:39,786 - INFO - Triggered /process-timelog for range 2025-08-01 → 2025-08-31
+2025-10-31 12:18:40,075 - INFO - Access token obtained successfully
+2025-10-31 12:18:40,076 - INFO - Fetching timelogs from 2025-08-01 to 2025-08-31...
+2025-10-31 12:18:40,076 - INFO - Fetching data for: 2025-08-01
+2025-10-31 12:18:41,041 - INFO - Found 79 log entries for 2025-08-01
+2025-10-31 12:18:41,042 - INFO - Fetching data for: 2025-08-02
+2025-10-31 12:18:41,276 - INFO - Found 23 log entries for 2025-08-02
+2025-10-31 12:18:41,277 - INFO - Fetching data for: 2025-08-03
+2025-10-31 12:18:41,464 - INFO - No logs found for 2025-08-03
+2025-10-31 12:18:41,465 - INFO - Fetching data for: 2025-08-04
+2025-10-31 12:18:41,720 - INFO - Found 90 log entries for 2025-08-04
+2025-10-31 12:18:41,721 - INFO - Fetching data for: 2025-08-05
+2025-10-31 12:18:42,203 - INFO - Found 96 log entries for 2025-08-05
+2025-10-31 12:18:42,203 - INFO - Fetching data for: 2025-08-06
+2025-10-31 12:18:42,437 - INFO - Found 92 log entries for 2025-08-06
+2025-10-31 12:18:42,437 - INFO - Fetching data for: 2025-08-07
+2025-10-31 12:18:42,686 - INFO - Found 102 log entries for 2025-08-07
+2025-10-31 12:18:42,686 - INFO - Fetching data for: 2025-08-08
+2025-10-31 12:18:42,903 - INFO - Found 85 log entries for 2025-08-08
+2025-10-31 12:18:42,904 - INFO - Fetching data for: 2025-08-09
+2025-10-31 12:18:43,164 - INFO - Found 4 log entries for 2025-08-09
+2025-10-31 12:18:43,165 - INFO - Fetching data for: 2025-08-10
+2025-10-31 12:18:43,348 - INFO - Found 2 log entries for 2025-08-10
+2025-10-31 12:18:43,349 - INFO - Fetching data for: 2025-08-11
+2025-10-31 12:18:43,578 - INFO - Found 83 log entries for 2025-08-11
+2025-10-31 12:18:43,578 - INFO - Fetching data for: 2025-08-12
+2025-10-31 12:18:43,794 - INFO - Found 67 log entries for 2025-08-12
+2025-10-31 12:18:43,794 - INFO - Fetching data for: 2025-08-13
+2025-10-31 12:18:44,085 - INFO - Found 83 log entries for 2025-08-13
+2025-10-31 12:18:44,086 - INFO - Fetching data for: 2025-08-14
+2025-10-31 12:18:44,349 - INFO - Found 89 log entries for 2025-08-14
+2025-10-31 12:18:44,350 - INFO - Fetching data for: 2025-08-15
+2025-10-31 12:18:44,544 - INFO - Found 2 log entries for 2025-08-15
+2025-10-31 12:18:44,544 - INFO - Fetching data for: 2025-08-16
+2025-10-31 12:18:44,754 - INFO - Found 5 log entries for 2025-08-16
+2025-10-31 12:18:44,754 - INFO - Fetching data for: 2025-08-17
+2025-10-31 12:18:44,942 - INFO - Found 2 log entries for 2025-08-17
+2025-10-31 12:18:44,942 - INFO - Fetching data for: 2025-08-18
+2025-10-31 12:18:45,388 - INFO - Found 96 log entries for 2025-08-18
+2025-10-31 12:18:45,388 - INFO - Fetching data for: 2025-08-19
+2025-10-31 12:18:45,686 - INFO - Found 73 log entries for 2025-08-19
+2025-10-31 12:18:45,687 - INFO - Fetching data for: 2025-08-20
+2025-10-31 12:18:45,950 - INFO - Found 86 log entries for 2025-08-20
+2025-10-31 12:18:45,951 - INFO - Fetching data for: 2025-08-21
+2025-10-31 12:18:46,264 - INFO - Found 88 log entries for 2025-08-21
+2025-10-31 12:18:46,265 - INFO - Fetching data for: 2025-08-22
+2025-10-31 12:18:46,486 - INFO - Found 82 log entries for 2025-08-22
+2025-10-31 12:18:46,486 - INFO - Fetching data for: 2025-08-23
+2025-10-31 12:18:46,668 - INFO - Found 15 log entries for 2025-08-23
+2025-10-31 12:18:46,668 - INFO - Fetching data for: 2025-08-24
+2025-10-31 12:18:46,866 - INFO - Found 4 log entries for 2025-08-24
+2025-10-31 12:18:46,866 - INFO - Fetching data for: 2025-08-25
+2025-10-31 12:18:47,124 - INFO - Found 81 log entries for 2025-08-25
+2025-10-31 12:18:47,124 - INFO - Fetching data for: 2025-08-26
+2025-10-31 12:18:47,348 - INFO - Found 76 log entries for 2025-08-26
+2025-10-31 12:18:47,349 - INFO - Fetching data for: 2025-08-27
+2025-10-31 12:18:47,705 - INFO - Found 4 log entries for 2025-08-27
+2025-10-31 12:18:47,706 - INFO - Fetching data for: 2025-08-28
+2025-10-31 12:18:48,131 - INFO - Found 94 log entries for 2025-08-28
+2025-10-31 12:18:48,132 - INFO - Fetching data for: 2025-08-29
+2025-10-31 12:18:48,437 - INFO - Found 73 log entries for 2025-08-29
+2025-10-31 12:18:48,437 - INFO - Fetching data for: 2025-08-30
+2025-10-31 12:18:48,740 - INFO - Found 54 log entries for 2025-08-30
+2025-10-31 12:18:48,741 - INFO - Fetching data for: 2025-08-31
+2025-10-31 12:18:49,345 - INFO - No logs found for 2025-08-31
+2025-10-31 12:18:49,346 - INFO - Total days processed: 31
+2025-10-31 12:18:49,346 - INFO - Total log entries found: 1730
+2025-10-31 12:34:43,878 - ERROR - Error fetching user by email janki@digiwagon.com: (psycopg2.OperationalError) could not receive data from server: Connection timed out
+SSL SYSCALL error: Connection timed out
+
+[SQL: SELECT employee_master.id AS employee_master_id, employee_master.name AS employee_master_name, employee_master.email AS employee_master_email, employee_master.department AS employee_master_department, employee_master.phone AS employee_master_phone, employee_master.created AS employee_master_created, employee_master.modified AS employee_master_modified 
+FROM employee_master 
+WHERE employee_master.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'janki@digiwagon.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-10-31 12:34:43,885 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:34:45,352 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:34:45,382 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:34:49,239 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:34:49,268 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:34:50,402 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:34:50,431 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:34:57,613 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:34:57,643 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:34:57,827 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:34:57,856 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:00,090 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:00,120 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:03,056 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:03,086 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:30,877 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:30,907 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:30,970 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:31,000 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:31,180 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:31,209 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:42,979 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:43,008 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:43,230 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:43,260 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:43,335 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:43,368 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:43,437 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:43,468 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:53,501 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:53,530 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:35:54,235 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:35:54,263 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:02,235 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:02,265 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:03,159 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:03,191 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:11,113 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:11,143 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:11,204 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:11,234 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:11,293 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:11,322 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:20,938 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:20,967 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:22,327 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:22,358 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:34,143 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:34,178 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:34,360 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:34,389 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:35,198 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:35,230 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:46,924 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:46,954 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:55,674 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:55,704 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:55,886 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:55,916 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:36:56,212 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:36:56,242 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:37:05,649 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:37:05,679 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:37:06,217 - WARNING - No employee found with email: janki@digiwagon.com
+2025-10-31 12:37:06,246 - WARNING - Skipping unknown user: janki@digiwagon.com
+2025-10-31 12:39:02,590 - INFO - Inserted 0 new timelogs.
+2025-10-31 12:39:02,591 - INFO - Updated 1697 existing timelogs.
+2025-10-31 12:39:02,591 - WARNING - Skipped 33 timelogs due to errors or missing data.
+2025-10-31 12:39:02,591 - INFO - Timelog data processed and saved successfully.
+2025-10-31 12:39:02,596 - INFO - Timelog data processed successfully
+2025-11-01 05:21:37,296 - INFO - Triggered /process-timelog for range 2025-10-30 → 2025-10-31
+2025-11-01 05:21:37,538 - INFO - Access token obtained successfully
+2025-11-01 05:21:37,540 - INFO - Fetching timelogs from 2025-10-30 to 2025-10-31...
+2025-11-01 05:21:37,540 - INFO - Fetching data for: 2025-10-30
+2025-11-01 05:21:37,902 - INFO - Found 74 log entries for 2025-10-30
+2025-11-01 05:21:37,903 - INFO - Fetching data for: 2025-10-31
+2025-11-01 05:21:38,204 - INFO - Found 112 log entries for 2025-10-31
+2025-11-01 05:21:38,204 - INFO - Total days processed: 2
+2025-11-01 05:21:38,204 - INFO - Total log entries found: 186
+2025-11-01 05:22:04,586 - INFO - Inserted 112 new timelogs.
+2025-11-01 05:22:04,586 - INFO - Updated 74 existing timelogs.
+2025-11-01 05:22:04,587 - INFO - Timelog data processed and saved successfully.
+2025-11-01 05:22:04,587 - INFO - Timelog data processed successfully
+2025-11-01 06:33:41,484 - INFO - Triggered /process-timelog for range 2025-10-30 → 2025-10-31
+2025-11-01 06:33:41,986 - INFO - Access token obtained successfully
+2025-11-01 06:33:41,989 - INFO - Fetching timelogs from 2025-10-30 to 2025-10-31...
+2025-11-01 06:33:41,990 - INFO - Fetching data for: 2025-10-30
+2025-11-01 06:33:42,427 - INFO - Found 74 log entries for 2025-10-30
+2025-11-01 06:33:42,431 - INFO - Fetching data for: 2025-10-31
+2025-11-01 06:33:42,881 - INFO - Found 112 log entries for 2025-10-31
+2025-11-01 06:33:42,882 - INFO - Total days processed: 2
+2025-11-01 06:33:42,882 - INFO - Total log entries found: 186
+2025-11-01 06:49:52,637 - ERROR - Error fetching user by email meet@digiwagon.com: (psycopg2.OperationalError) could not receive data from server: Connection timed out
+SSL SYSCALL error: Connection timed out
+
+[SQL: SELECT employee_master.id AS employee_master_id, employee_master.name AS employee_master_name, employee_master.email AS employee_master_email, employee_master.department AS employee_master_department, employee_master.phone AS employee_master_phone, employee_master.created AS employee_master_created, employee_master.modified AS employee_master_modified 
+FROM employee_master 
+WHERE employee_master.email = %(email_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'meet@digiwagon.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-01 06:49:52,638 - WARNING - Skipping unknown user: meet@digiwagon.com
+2025-11-01 06:50:27,043 - INFO - Inserted 0 new timelogs.
+2025-11-01 06:50:27,044 - INFO - Updated 185 existing timelogs.
+2025-11-01 06:50:27,044 - WARNING - Skipped 1 timelogs due to errors or missing data.
+2025-11-01 06:50:27,045 - INFO - Timelog data processed and saved successfully.
+2025-11-01 06:50:27,046 - INFO - Timelog data processed successfully

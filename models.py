@@ -71,3 +71,10 @@ class ZohoTimelogEntry(TimeStampedModel):
 
     # Relationship to employee
     employee = relationship("EmployeeMaster", back_populates="timelogs")
+
+class HolidayMaster(TimeStampedModel):
+    __tablename__ = "holiday_master"
+
+    id = Column(Integer, primary_key=True, index=True)
+    holiday_date = Column(Date, nullable=False, unique=True)
+    description = Column(String, nullable=True)

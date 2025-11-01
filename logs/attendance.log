@@ -1,0 +1,93 @@
+2025-11-01 04:48:42,175 - INFO - Triggered /process-attendance endpoint
+2025-11-01 04:48:42,259 - INFO - Successfully read August 25.xls
+2025-11-01 04:48:42,259 - INFO - Shape: (958, 9)
+2025-11-01 04:48:42,331 - INFO - Found 29 unique users in file
+2025-11-01 04:48:42,342 - INFO - Total users processed: 29
+2025-11-01 04:48:42,440 - INFO - Data cleaned successfully. Shape: (839, 5)
+2025-11-01 04:48:42,456 - INFO - Processing data for date range: 2025-08-01 to 2025-08-31
+2025-11-01 04:48:42,520 - INFO - ✓ Inserted: 0 new records
+2025-11-01 04:48:42,521 - INFO - ✓ Updated: 839 existing records
+2025-11-01 04:48:42,521 - INFO - ✓ Total processed: 839 records
+2025-11-01 04:48:42,528 - INFO - File moved to: processed_files/August 25_20251101_044842.xls
+2025-11-01 04:48:42,528 - INFO - Process completed successfully!
+2025-11-01 04:48:42,528 - INFO - Attendance file processed successfully
+2025-11-01 04:50:40,353 - INFO - Triggered /process-attendance endpoint
+2025-11-01 04:50:40,434 - INFO - Successfully read August 25.xls
+2025-11-01 04:50:40,435 - INFO - Shape: (958, 9)
+2025-11-01 04:50:40,514 - INFO - Found 29 unique users in file
+2025-11-01 04:50:40,582 - INFO - Total users processed: 29
+2025-11-01 04:50:40,704 - INFO - Data cleaned successfully. Shape: (839, 5)
+2025-11-01 04:50:40,719 - INFO - Processing data for date range: 2025-08-01 to 2025-08-31
+2025-11-01 04:50:51,402 - INFO - ✓ Inserted: 839 new records
+2025-11-01 04:50:51,407 - INFO - ✓ Updated: 0 existing records
+2025-11-01 04:50:51,418 - INFO - ✓ Total processed: 839 records
+2025-11-01 04:50:51,439 - INFO - File moved to: processed_files/August 25_20251101_045051.xls
+2025-11-01 04:50:51,439 - INFO - Process completed successfully!
+2025-11-01 04:50:51,440 - INFO - Attendance file processed successfully
+2025-11-01 04:51:05,256 - INFO - Triggered /process-attendance endpoint
+2025-11-01 04:51:05,279 - INFO - Successfully read September 25.xls
+2025-11-01 04:51:05,279 - INFO - Shape: (1023, 9)
+2025-11-01 04:51:05,369 - INFO - Found 30 unique users in file
+2025-11-01 04:51:05,460 - INFO - Total users processed: 30
+2025-11-01 04:51:05,598 - INFO - Data cleaned successfully. Shape: (900, 5)
+2025-11-01 04:51:05,610 - INFO - Processing data for date range: 2025-09-01 to 2025-09-30
+2025-11-01 04:51:13,187 - INFO - ✓ Inserted: 900 new records
+2025-11-01 04:51:13,187 - INFO - ✓ Updated: 0 existing records
+2025-11-01 04:51:13,187 - INFO - ✓ Total processed: 900 records
+2025-11-01 04:51:13,196 - INFO - File moved to: processed_files/September 25_20251101_045113.xls
+2025-11-01 04:51:13,196 - INFO - Process completed successfully!
+2025-11-01 04:51:13,196 - INFO - Attendance file processed successfully
+2025-11-01 05:13:19,659 - INFO - Triggered /process-attendance endpoint
+2025-11-01 05:13:19,784 - INFO - Successfully read September 25.xls
+2025-11-01 05:13:19,784 - INFO - Shape: (1023, 9)
+2025-11-01 05:13:19,893 - INFO - Found 30 unique users in file
+2025-11-01 05:13:19,917 - INFO - Created 30 new users
+2025-11-01 05:13:19,918 - INFO - Total users processed: 30
+2025-11-01 05:13:20,064 - INFO - Data cleaned successfully. Shape: (900, 5)
+2025-11-01 05:13:20,089 - INFO - Processing data for date range: 2025-09-01 to 2025-09-30
+2025-11-01 05:13:20,277 - INFO - ✓ Inserted: 900 new records
+2025-11-01 05:13:20,278 - INFO - ✓ Updated: 0 existing records
+2025-11-01 05:13:20,278 - INFO - ✓ Total processed: 900 records
+2025-11-01 05:13:20,286 - INFO - File moved to: processed_files/September 25.xls
+2025-11-01 05:13:20,287 - INFO - Process completed successfully!
+2025-11-01 05:13:20,287 - INFO - Attendance file processed successfully
+2025-11-01 05:14:03,669 - INFO - Triggered /process-attendance endpoint
+2025-11-01 05:14:03,689 - INFO - Successfully read August 25.xls
+2025-11-01 05:14:03,690 - INFO - Shape: (958, 9)
+2025-11-01 05:14:03,771 - INFO - Found 29 unique users in file
+2025-11-01 05:14:03,775 - INFO - Total users processed: 29
+2025-11-01 05:14:03,882 - INFO - Data cleaned successfully. Shape: (839, 5)
+2025-11-01 05:14:03,894 - INFO - Processing data for date range: 2025-08-01 to 2025-08-31
+2025-11-01 05:14:04,060 - INFO - ✓ Inserted: 839 new records
+2025-11-01 05:14:04,060 - INFO - ✓ Updated: 0 existing records
+2025-11-01 05:14:04,060 - INFO - ✓ Total processed: 839 records
+2025-11-01 05:14:04,067 - INFO - File moved to: processed_files/August 25.xls
+2025-11-01 05:14:04,068 - INFO - Process completed successfully!
+2025-11-01 05:14:04,068 - INFO - Attendance file processed successfully
+2025-11-01 05:17:43,224 - INFO - Triggered /process-attendance endpoint
+2025-11-01 05:17:43,251 - INFO - Successfully read Attendance Report of Oct.25.xls
+2025-11-01 05:17:43,251 - INFO - Shape: (1053, 9)
+2025-11-01 05:17:43,345 - INFO - Found 30 unique users in file
+2025-11-01 05:17:43,357 - INFO - Created 1 new users
+2025-11-01 05:17:43,357 - INFO - Total users processed: 30
+2025-11-01 05:17:43,499 - INFO - Data cleaned successfully. Shape: (930, 5)
+2025-11-01 05:17:43,511 - INFO - Processing data for date range: 2025-10-01 to 2025-10-31
+2025-11-01 05:17:43,708 - INFO - ✓ Inserted: 930 new records
+2025-11-01 05:17:43,709 - INFO - ✓ Updated: 0 existing records
+2025-11-01 05:17:43,709 - INFO - ✓ Total processed: 930 records
+2025-11-01 05:17:43,717 - INFO - File moved to: processed_files/Attendance Report of Oct.25.xls
+2025-11-01 05:17:43,718 - INFO - Process completed successfully!
+2025-11-01 05:17:43,718 - INFO - Attendance file processed successfully
+2025-11-01 05:19:31,767 - INFO - Triggered /process-attendance endpoint
+2025-11-01 05:19:31,886 - INFO - Successfully read Attendance Report of Oct.25.xls
+2025-11-01 05:19:31,886 - INFO - Shape: (1053, 9)
+2025-11-01 05:19:31,985 - INFO - Found 30 unique users in file
+2025-11-01 05:19:32,060 - INFO - Total users processed: 30
+2025-11-01 05:19:32,229 - INFO - Data cleaned successfully. Shape: (930, 5)
+2025-11-01 05:19:32,249 - INFO - Processing data for date range: 2025-10-01 to 2025-10-31
+2025-11-01 05:19:41,167 - INFO - ✓ Inserted: 930 new records
+2025-11-01 05:19:41,168 - INFO - ✓ Updated: 0 existing records
+2025-11-01 05:19:41,168 - INFO - ✓ Total processed: 930 records
+2025-11-01 05:19:41,175 - INFO - File moved to: processed_files/Attendance Report of Oct.25_20251101_051941.xls
+2025-11-01 05:19:41,176 - INFO - Process completed successfully!
+2025-11-01 05:19:41,176 - INFO - Attendance file processed successfully
