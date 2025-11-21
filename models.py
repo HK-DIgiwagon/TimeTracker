@@ -78,3 +78,13 @@ class HolidayMaster(TimeStampedModel):
     id = Column(Integer, primary_key=True, index=True)
     holiday_date = Column(Date, nullable=False, unique=True)
     description = Column(String, nullable=True)
+
+
+class MonthlyExpectedHours(TimeStampedModel):
+    __tablename__ = "monthly_expected_hours"
+
+    id = Column(Integer, primary_key=True, index=True)
+    year=Column(Integer, nullable=False)
+    month = Column(Integer, nullable=False, unique=True)
+    working_days = Column(Integer, nullable=False)
+    expected_hours = Column(Integer, nullable=False)

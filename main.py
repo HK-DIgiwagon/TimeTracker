@@ -1,14 +1,17 @@
-from fastapi import FastAPI, Depends, HTTPException,Query
+from fastapi import FastAPI, Depends, HTTPException,Query,UploadFile, File
 from sqlalchemy.orm import Session
 from database import engine, get_db
 import models
 from file_operations import process_file
 from timelog_operations import process_timelogs
 from sqlalchemy import func, and_
-from models import ZohoTimelogEntry, DailyAttendance, EmployeeMaster
+from models import ZohoTimelogEntry, DailyAttendance, EmployeeMaster,MonthlyExpectedHours
 from datetime import date
 from logger_config import attendance_logger, timelog_logger
 from sqlalchemy import cast, Time
+import calendar
+from io import BytesIO
+import os
 
 
 # Create tables
@@ -26,12 +29,22 @@ def get_employees(db: Session = Depends(get_db)):
     return db.query(models.EmployeeMaster).all()
 
 
-@app.get("/process-attendance")
-def process_attendance_file():
+@app.post("/process-attendance")
+async def process_attendance_file(file: UploadFile = File(...)):
     """Process attendance .xls file."""
     attendance_logger.info("Triggered /process-attendance endpoint")
+
+    # Validate file extension
+    if not file.filename.endswith('.xls'):
+        attendance_logger.error(f"Invalid file type: {file.filename}")
+        raise HTTPException(status_code=400, detail="Only .xls files are allowed")
+    
+
     try:
-        success = process_file()
+        contents = await file.read()
+        
+        # Process the file
+        success = process_file(contents, file.filename)
         if success:
             attendance_logger.info("Attendance file processed successfully")
             return {"status": "success", "message": "Attendance file processed successfully"}
@@ -41,6 +54,8 @@ def process_attendance_file():
     except Exception as e:
         attendance_logger.exception(f"Error processing attendance file: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
+    finally:
+        await file.close()
 
 
 @app.get("/process-timelog")
@@ -151,3 +166,38 @@ def get_late_comers(
         }
         for r in late_comers
     ]
+
+@app.get("/add_update_expected_hours")
+def add_update_expected_hours(db: Session = Depends(get_db)):
+    """
+    Add or update expected working hours for each month of current year.
+    """
+    # fatch data from HolidayMaster
+    holidays = db.query(models.HolidayMaster).all()
+    holiday_dates = {holiday.holiday_date for holiday in holidays}
+    current_year = date.today().year
+    
+    for month in range(1, 13):
+        total_days = calendar.monthrange(current_year, month)[1]
+        working_days = sum(1 for day in range(1, total_days + 1)
+                           if date(current_year, month, day).weekday() < 5 and
+                           date(current_year, month, day) not in holiday_dates)
+        expected_hours = working_days * 8  # Assuming 8 working hours per day
+        
+        # Check if record exists
+        record = db.query(MonthlyExpectedHours).filter_by(year=current_year, month=month).first()
+        if record:
+            # Update existing record
+            record.working_days = working_days
+            record.expected_hours = expected_hours
+        else:
+            # Create new record
+            new_record = MonthlyExpectedHours(
+                year=current_year,
+                month=month,
+                working_days=working_days,
+                expected_hours=expected_hours
+            )
+            db.add(new_record)
+    db.commit()
+    return {"status": "success", "message": "Expected working hours updated for each month."}

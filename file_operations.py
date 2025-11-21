@@ -5,6 +5,8 @@ from models import EmployeeMaster, DailyAttendance
 from datetime import timedelta
 from dotenv import load_dotenv  
 from logger_config import attendance_logger
+from io import BytesIO
+
 
 
 load_dotenv()  
@@ -13,44 +15,32 @@ PROCESSED_FOLDER  = os.getenv("PROCESSED_FOLDER")
 
 
 
-def read_xls_file():
+def read_xls_from_bytes(file_contents: bytes, filename: str):
     """
-    Automatically finds and reads the first .xls file from the specified folder.
+    Read .xls file from bytes.
     
+    Args:
+        file_contents: Raw bytes of the file
+        filename: Original filename for logging
+        
+    Returns:
+        DataFrame or None
     """
     try:
-        # Check if folder exists
-        if not os.path.exists(RAW_FOLDER):
-            raise FileNotFoundError(f"Folder not found: {RAW_FOLDER}")
+        # Create a BytesIO object from the file contents
+        file_buffer = BytesIO(file_contents)
         
-        # Find all .xls files in the folder
-        xls_files = [f for f in os.listdir(RAW_FOLDER) if f.endswith('.xls')]
-        
-        if not xls_files:
-            raise FileNotFoundError(f"No .xls files found in folder: {RAW_FOLDER}")
-        
-        # Use the first .xls file found
-        filename = xls_files[0]
-        file_path = os.path.join(RAW_FOLDER , filename)
-
         # Read the Excel file
-        df = pd.read_excel(file_path, engine='xlrd')
+        df = pd.read_excel(file_buffer, engine='xlrd')
         
         attendance_logger.info(f"Successfully read {filename}")
         attendance_logger.info(f"Shape: {df.shape}")
         
-        if len(xls_files) > 1:
-            attendance_logger.warning(f"Note: Multiple .xls files found. Loaded: {filename}")
-            attendance_logger.warning(f"Other files: {xls_files[1:]}")
-        
-        return df, file_path
+        return df
     
-    except FileNotFoundError as e:
-        attendance_logger.error(f"File error: {e}")
-        return None, None
     except Exception as e:
-        attendance_logger.error(f"Error reading file: {e}")
-        return None, None
+        attendance_logger.error(f"Error reading file {filename}: {e}")
+        return None
 
 
 
@@ -361,48 +351,8 @@ def load_data_to_db(df):
         if db:
             db.close()
 
-def move_file(file_path):
-    """
-    Moves a file to the processed_files directory.
-    """
-    try:
-        # Validate file_path is not None
-        if file_path is None:
-            attendance_logger.error("Error: file_path is None")
-            return False
-        
-        # Validate file exists
-        if not os.path.exists(file_path):
-            attendance_logger.error(f"File not found: {file_path}")
-            return False
-        
-        if not PROCESSED_FOLDER:
-            attendance_logger.error(f"Processed_Folder not set in .env.")
-            return False
-        
-        # Create processed directory
-        os.makedirs(PROCESSED_FOLDER , exist_ok=True)
-        
-        # Get new path
-        filename = os.path.basename(file_path)
-        new_path = os.path.join(PROCESSED_FOLDER , filename)
-        
-        # Handle duplicate filename
-        if os.path.exists(new_path):
-            from datetime import datetime
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            name, ext = os.path.splitext(filename)
-            new_path = os.path.join(PROCESSED_FOLDER, f"{name}_{timestamp}{ext}")
-        # Move file
-        os.rename(file_path, new_path)
-        attendance_logger.info(f"File moved to: {new_path}")
-        return True
-        
-    except Exception as e:
-        attendance_logger.error(f"Error moving file: {e}")
-        return False
-
-def process_file():
+    
+def process_file(file_contents: bytes, filename: str):
     """
     Process attendance file from specified folder.
     
@@ -411,8 +361,8 @@ def process_file():
     """
     try:        
         # Read file
-        df, file_path = read_xls_file()
-        if df is None or file_path is None:
+        df = read_xls_from_bytes(file_contents, filename)
+        if df is None:
             attendance_logger.error("Failed to read file")
             return False
         
@@ -426,10 +376,6 @@ def process_file():
         if not load_data_to_db(df_cleaned):
             attendance_logger.error("Failed to load data")
             return False
-        
-        # Move file
-        if not move_file(file_path):
-            attendance_logger.warning("Data loaded but file not moved")
         
         attendance_logger.info("Process completed successfully!")
         return True
