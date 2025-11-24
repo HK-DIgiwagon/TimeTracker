@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', path='images/icons/favicon.ico') }}" />
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ───────────── NAVBAR ───────────── */
+        .navbar {
+            background: #57b846;
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .navbar .right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .navbar .username {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .navbar button {
+            background: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #57b846;
+        }
+        .navbar button:hover {
+            background: #e7e7e7;
+        }
+
+        /* ───────────── MAIN LAYOUT ───────────── */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* ───────────── UPLOAD SECTION ───────────── */
+        .upload-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #57b846;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            background: #f7f7f7;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .btn-upload {
+            background: #57b846;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .btn-upload:hover {
+            background: #469a3a;
+        }
+        .btn-upload:disabled {
+            background: #a8d9a0;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            padding: 12px;
+            margin-top: 18px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #e7f9ee;
+            border-left: 5px solid #57b846;
+            color: #1f7a31;
+        }
+        .error {
+            background: #fde7e7;
+            border-left: 5px solid #d63031;
+            color: #a82020;
+        }
+
+        .loader {
+            display: none;
+            margin: 18px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #57b846;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ───────────── NEW USERS SECTION ───────────── */
+        .users-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #57b846;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .users-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+
+        .user-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .email-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #57b846;
+        }
+
+        .btn-save {
+            background: #57b846;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: #469a3a;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-subtext {
+            font-size: 13px;
+            color: #bbb;
+        }
+
+        /* ───────────── RESPONSIVE ───────────── */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', path='images/Digiwagon_logo1.png') }}" alt="Logo">
+        </div>
+
+        <div class="right">
+            <span class="username">Welcome,<b> {{user}}</b></span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="content-grid">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="section-title">Upload Attendance File</div>
+
+                <form id="attendanceForm">
+                    <input type="file" id="fileInput" accept=".xls" required>
+                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
+                </form>
+
+                <div class="loader" id="loader"></div>
+
+                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
+                <div class="alert error" id="errorMsg">Error uploading file!</div>
+            </div>
+            
+
+            <!-- New Users Section -->
+            <div class="users-section">
+                <div class="section-title">New Users </div>
+
+                <div class="users-list" id="usersList">
+                    
+                    {% if not new_employees %}
+                        <div class="empty-state">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                </path>
+                            </svg>
+                            <div class="empty-state-text">No new users found</div>
+                        </div>
+                    {% else %}
+                            {% for employee in new_employees %}
+                                <div class="user-card">
+                                    <div class="user-name">{{ employee.name }}</div>
+                                    <div class="email-input-group">
+                                        <input 
+                                            type="email" 
+                                            class="email-input" 
+                                            placeholder="Enter email address"
+                                            value="{{ employee.email or '' }}"
+                                            id="email_{{ employee.id }}"
+                                        >
+                                        <button class="btn-save" type="button" onclick="saveEmail('{{ employee.id }}')">Save</button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- Timesheet Section -->
+            <div class="upload-section">
+                <div class="section-title">Insert Zoho Projects Timesheet Data</div>
+
+                <form id="attendanceForm">
+                    <input type="file" id="fileInput" accept=".xls" required>
+                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
+                </form>
+
+                <div class="loader" id="loader"></div>
+
+                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
+                <div class="alert error" id="errorMsg">Error uploading file!</div>
+            </div>
+
+            <!-- Leave Section -->
+            <div class="upload-section">
+                <div class="section-title">Insert Zoho People Leave Data</div>
+
+                <form id="attendanceForm">
+                    <input type="file" id="fileInput" accept=".xls" required>
+                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
+                </form>
+
+                <div class="loader" id="loader"></div>
+
+                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
+                <div class="alert error" id="errorMsg">Error uploading file!</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("attendanceForm");
+        const loader = document.getElementById("loader");
+        const successMsg = document.getElementById("successMsg");
+        const errorMsg = document.getElementById("errorMsg");
+        const fileInput = document.getElementById("fileInput");
+        const uploadBtn = document.getElementById("uploadBtn");
+        const usersList = document.getElementById("usersList");
+
+        let newUsers = [];
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            successMsg.style.display = "none";
+            errorMsg.style.display = "none";
+            loader.style.display = "block";
+            uploadBtn.disabled = true;
+
+            const file = fileInput.files[0];
+            if (!file) {
+                errorMsg.innerText = "Please select a file first!";
+                errorMsg.style.display = "block";
+                loader.style.display = "none";
+                uploadBtn.disabled = false;
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                const response = await fetch("/process-attendance", {
+                    method: "GET",
+                    body: formData,
+                });
+
+                const result = await response.json();
+                loader.style.display = "none";
+                uploadBtn.disabled = false;
+
+                if (response.ok) {
+                    successMsg.innerText = result.message;
+                    successMsg.style.display = "block";
+                    fileInput.value = "";
+
+                    // Check if there are new users in the response
+                    if (result.new_users && result.new_users.length > 0) {
+                        newUsers = result.new_users;
+                        renderUsers();
+                    } else {
+                        renderUsers(); // Show empty state
+                    }
+                } else {
+                    errorMsg.innerText = result.detail || "Something went wrong!";
+                    errorMsg.style.display = "block";
+                }
+
+            } catch (error) {
+                loader.style.display = "none";
+                uploadBtn.disabled = false;
+                errorMsg.innerText = "Server error — please try again later!";
+                errorMsg.style.display = "block";
+            }
+        });
+
+
+       function saveEmail(empId) {
+        const emailInput = document.getElementById(`email_${empId}`);
+        const email = emailInput.value.trim();
+
+        if (!email) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        fetch("/update-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: empId, email: email }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Email updated successfully!");
+                location.reload(); // optional
+            } else {
+                alert("Error updating email.");
+            }
+        })
+        .catch(error => {
+            alert("Server error — please try again later!");
+        });
+    }
+
+        function logout() {
+            window.location.href = "/logout";
+        }
+
+
+    </script>
+
+
+</body>
+</html>
