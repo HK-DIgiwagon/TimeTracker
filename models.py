@@ -51,6 +51,8 @@ class EmployeeLeave(TimeStampedModel):
     emp_id = Column(String, ForeignKey("employee_master.id"), nullable=False)
     leave_date = Column(Date, nullable=False)
     leave_type = Column(Enum(LeaveTypeEnum), nullable=False)
+    zoho_leave_type = Column(String, nullable=True)
+    reason = Column(String, nullable=True)
 
     employee = relationship("EmployeeMaster", back_populates="leaves")
 
@@ -88,3 +90,10 @@ class MonthlyExpectedHours(TimeStampedModel):
     month = Column(Integer, nullable=False, unique=True)
     working_days = Column(Integer, nullable=False)
     expected_hours = Column(Integer, nullable=False)
+
+class User(TimeStampedModel):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True)
+    password = Column(String)   # hashed password

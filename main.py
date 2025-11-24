@@ -1,17 +1,30 @@
-from fastapi import FastAPI, Depends, HTTPException,Query,UploadFile, File
+from operator import or_
+from fastapi import FastAPI, Depends, HTTPException,Query,UploadFile, File,Request, Form
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from database import engine, get_db
 import models
 from file_operations import process_file
 from timelog_operations import process_timelogs
 from sqlalchemy import func, and_
-from models import ZohoTimelogEntry, DailyAttendance, EmployeeMaster,MonthlyExpectedHours
+from models import *
 from datetime import date
-from logger_config import attendance_logger, timelog_logger
+from logger_config import attendance_logger, timelog_logger, leave_logger
 from sqlalchemy import cast, Time
 import calendar
 from io import BytesIO
 import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from database import SessionLocal
+from passlib.context import CryptContext
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware import Middleware
+from starlette.middleware.sessions import SessionMiddleware
+from sqlalchemy.orm import Session
+from leave_record_operations import process_leave_data
+
+
 
 
 # Create tables
@@ -19,18 +32,88 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Employee Attendance Demo")
 
-@app.get("/")
-def read_root():
-    return {"message": "Employee Attendance API is running"}
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="SECRET_KEY_CHANGE_THIS",
+    max_age=86400   # 24 hours
+)
 
-# Example: Get all employees
-@app.get("/employees/")
-def get_employees(db: Session = Depends(get_db)):
-    return db.query(models.EmployeeMaster).all()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
+pwd_context = CryptContext(schemes=["bcrypt"])
+
+@app.get("/")
+def index(request: Request):
+    # if logged in -> redirect to dashboard
+    if request.session.get("user"):
+        return RedirectResponse("/dashboard")
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+def login(request: Request, username: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+
+    if not user or not pwd_context.verify(password, user.password):
+        return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid username or password"})
+
+    request.session["user"] = user.username  # store 
+    return RedirectResponse("/dashboard", status_code=302)
+
+
+@app.get("/logout")
+def logout(request: Request):
+    request.session.pop("user", None)
+    return RedirectResponse("/")
+
+
+
+
+@app.get("/dashboard")
+def dashboard(request: Request,db: Session = Depends(get_db)):
+    if not request.session.get("user"):
+        return RedirectResponse("/")
+    
+    # fatch all employeemaster data where email is null and pass to template
+    # email is none or empty
+    new_employees = db.query(models.EmployeeMaster).filter(or_(models.EmployeeMaster.email == None, models.EmployeeMaster.email == "")).all()
+    new_list = [{"id": e.id, "name": e.name, "email": e.email} for e in new_employees]
+
+    return templates.TemplateResponse("dashboard.html", {
+        "request": request,
+        "user": request.session.get("user"),
+        "new_employees": new_list
+    })
+
+
+from pydantic import BaseModel, EmailStr
+class EmailUpdate(BaseModel):
+    id: str
+    email: EmailStr 
+@app.post("/update-email")
+def update_email(payload: EmailUpdate, request: Request, db: Session = Depends(get_db)):
+    if not request.session.get("user"):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    emp_id = payload.id
+    email = payload.email
+
+    employee = db.query(EmployeeMaster).filter(EmployeeMaster.id == emp_id).first()
+    if not employee:
+        raise HTTPException(status_code=404, detail="Employee not found")
+
+    employee.email = email
+    db.commit()
+    return {"success": True, "message": f"Email updated for employee {emp_id}"}
+
 
 
 @app.post("/process-attendance")
-async def process_attendance_file(file: UploadFile = File(...)):
+async def process_attendance_file(request: Request,file: UploadFile = File(...)):
+    if not request.session.get("user"):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
     """Process attendance .xls file."""
     attendance_logger.info("Triggered /process-attendance endpoint")
 
@@ -74,6 +157,18 @@ def process_timelog(start_date: str = Query(..., description="Start date in YYYY
         timelog_logger.exception(f"Error processing timelog data: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
 
+
+
+@app.get("/process-leave")
+def process_leave(start_date: str = Query(..., description="Start date in YYYY-MM-DD format"), end_date: str = Query(..., description="End date in YYYY-MM-DD format")):
+    """Process leave data from Zoho People API."""
+    leave_logger.info(f"Triggered /process-leave for range {start_date} → {end_date}")
+    try:
+        message=process_leave_data(start_date, end_date)
+        return message
+    except Exception as e:
+        leave_logger.exception(f"Error processing leave data: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error processing leave data: {str(e)}")
 
 
 @app.get("/timelog-summary")
@@ -150,7 +245,7 @@ def get_late_comers(
         .join(EmployeeMaster, DailyAttendance.emp_id == EmployeeMaster.id)
         .filter(
             DailyAttendance.attendance_date.between(start_date, end_date),
-            DailyAttendance.in_time >= '10:11:00'  # ✅ Use string comparison for time field
+            DailyAttendance.in_time >= '10:11:00'  # Use string comparison for time field
         )
         .group_by(DailyAttendance.emp_id, EmployeeMaster.name, EmployeeMaster.email)
         .order_by(func.count(DailyAttendance.id).desc())

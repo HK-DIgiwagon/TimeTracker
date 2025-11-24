@@ -31,3 +31,17 @@ timelog_handler.setFormatter(timelog_formatter)
 
 if not timelog_logger.hasHandlers():
     timelog_logger.addHandler(timelog_handler)
+
+
+# --- Timelog Logger ---
+leave_logger = logging.getLogger("leave_logger")
+leave_logger.setLevel(logging.INFO)
+
+leave_handler = logging.FileHandler("logs/leave.log")
+leave_formatter = logging.Formatter(
+    "%(asctime)s - %(levelname)s - %(message)s"
+)
+leave_handler.setFormatter(leave_formatter)
+
+if not leave_logger.hasHandlers():
+    leave_logger.addHandler(leave_handler)
