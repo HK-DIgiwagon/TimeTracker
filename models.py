@@ -39,9 +39,9 @@ class DailyAttendance(TimeStampedModel):
 
 # Enum for leave type
 class LeaveTypeEnum(str, enum.Enum):
-    full_day = "Full Day"
-    first_half = "First Half"
-    second_half = "Second Half"
+    full_day = "full_day"
+    first_half = "first_half"
+    second_half = "second_half"
 
 # Employee leave table
 class EmployeeLeave(TimeStampedModel):
@@ -87,9 +87,18 @@ class MonthlyExpectedHours(TimeStampedModel):
 
     id = Column(Integer, primary_key=True, index=True)
     year=Column(Integer, nullable=False)
-    month = Column(Integer, nullable=False, unique=True)
+    month = Column(Integer, nullable=False)
     working_days = Column(Integer, nullable=False)
     expected_hours = Column(Integer, nullable=False)
+
+class WorkingWeekend(TimeStampedModel):
+    __tablename__ = "working_weekend"
+
+    id = Column(Integer, primary_key=True, index=True)
+    emp_id = Column(String, ForeignKey("employee_master.id"), nullable=False)
+    weekend_date = Column(Date, nullable=False)
+    work_type = Column(Enum(LeaveTypeEnum), nullable=False)
+
 
 class User(TimeStampedModel):
     __tablename__ = "users"

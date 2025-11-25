@@ -245,6 +245,23 @@
                 grid-template-columns: 1fr;
             }
         }
+        .user-card {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .user-card th, .user-card td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .user-card th {
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
@@ -263,92 +280,125 @@
     </div>
 
     <div class="main-wrapper">
-        <div class="content-grid">
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <div class="section-title">Upload Attendance File</div>
+    <div class="content-grid">
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="section-title">Upload Attendance File</div>
 
-                <form id="attendanceForm">
-                    <input type="file" id="fileInput" accept=".xls" required>
-                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
-                </form>
+            <form id="attendanceForm">
+                <input type="file" id="fileInput" accept=".xls" required>
+                <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
+            </form>
 
-                <div class="loader" id="loader"></div>
+            <div class="loader" id="loader"></div>
 
-                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
-                <div class="alert error" id="errorMsg">Error uploading file!</div>
-            </div>
-            
+            <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
+            <div class="alert error" id="errorMsg">Error uploading file!</div>
+        </div>
+        
 
-            <!-- New Users Section -->
-            <div class="users-section">
-                <div class="section-title">New Users </div>
+        <!-- New Users Section -->
+        <div class="users-section">
+            <div class="section-title">New Users </div>
 
-                <div class="users-list" id="usersList">
-                    
-                    {% if not new_employees %}
-                        <div class="empty-state">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                                </path>
-                            </svg>
-                            <div class="empty-state-text">No new users found</div>
-                        </div>
-                    {% else %}
-                            {% for employee in new_employees %}
-                                <div class="user-card">
-                                    <div class="user-name">{{ employee.name }}</div>
-                                    <div class="email-input-group">
-                                        <input 
-                                            type="email" 
-                                            class="email-input" 
-                                            placeholder="Enter email address"
-                                            value="{{ employee.email or '' }}"
-                                            id="email_{{ employee.id }}"
-                                        >
-                                        <button class="btn-save" type="button" onclick="saveEmail('{{ employee.id }}')">Save</button>
-                                    </div>
+            <div class="users-list" id="usersList">
+                
+                {% if not new_employees %}
+                    <div class="empty-state">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <div class="empty-state-text">No new users found</div>
+                    </div>
+                {% else %}
+                        {% for employee in new_employees %}
+                            <div class="user-card">
+                                <div class="user-name">{{ employee.name }}</div>
+                                <div class="email-input-group">
+                                    <input 
+                                        type="email" 
+                                        class="email-input" 
+                                        placeholder="Enter email address"
+                                        value="{{ employee.email or '' }}"
+                                        id="email_{{ employee.id }}"
+                                    >
+                                    <button class="btn-save" type="button" onclick="saveEmail('{{ employee.id }}')">Save</button>
                                 </div>
-                            {% endfor %}
+                            </div>
+                        {% endfor %}
 
-                    {% endif %}
-                </div>
-
-            </div>
-
-            <!-- Timesheet Section -->
-            <div class="upload-section">
-                <div class="section-title">Insert Zoho Projects Timesheet Data</div>
-
-                <form id="attendanceForm">
-                    <input type="file" id="fileInput" accept=".xls" required>
-                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
-                </form>
-
-                <div class="loader" id="loader"></div>
-
-                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
-                <div class="alert error" id="errorMsg">Error uploading file!</div>
-            </div>
-
-            <!-- Leave Section -->
-            <div class="upload-section">
-                <div class="section-title">Insert Zoho People Leave Data</div>
-
-                <form id="attendanceForm">
-                    <input type="file" id="fileInput" accept=".xls" required>
-                    <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
-                </form>
-
-                <div class="loader" id="loader"></div>
-
-                <div class="alert success" id="successMsg">Attendance file processed successfully!</div>
-                <div class="alert error" id="errorMsg">Error uploading file!</div>
+                {% endif %}
             </div>
 
         </div>
+
     </div>
+    
+    <!-- Employees Extra Working Days Section - Full Width -->
+    <div class="upload-section" style="margin: 30px;">
+        <div class="section-title">Extra Working Days</div>
+
+        <div style="margin-top: 20px; font-weight: bold; font-size: 18px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+    <div style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+        <select name="emp_id" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+            <option value="" disabled selected>Select Employee</option>
+            {% for emp_id, emp_name in all_employees.items() %}
+                <option value="{{ emp_id }}">{{ emp_name }} ({{ emp_id }})</option>
+            {% endfor %}
+        </select>
+
+        <input type="date" name="weekend_date" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+
+        <select name="work_type" required style="padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+            <option value="" disabled selected>Select Work Type</option>
+            {% for lt in leave_types %}
+                <option value="{{ lt }}">{{ lt.replace('_', ' ').title() }}</option>
+            {% endfor %}
+        </select>
+
+        <button class="btn-save" onclick="addWorkingWeekend()">Add</button>
+    </div>
+    
+    <div class="alert success1" style="margin-top: 10px; display: none; text-align: center; font-size: 14px; font-weight: normal; color: #fff; background-color: #4CAF50; padding: 10px; border-radius: 6px;">Extra working day added successfully!</div>
+    <div class="alert error1" style="margin-top: 10px; display: none; text-align: center; font-size: 14px; font-weight: normal; color: #fff; background-color: #f44336; padding: 10px; border-radius: 6px;">Error adding working weekend!</div>
+</div>
+        
+        <table class="user-card" border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Work Type</th>
+                    <th style="width: 200px; text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in extra_working_days %}
+                <tr>
+                    <td>{{ i.emp_id }}</td>
+                    <td>{{ i.Name }}</td>
+                    <td>{{ i.weekend_date }}</td>
+                    <td>{{ i.work_type.value }}</td>
+                    <td style="text-align: center;">
+                        
+                        
+                        <!-- Delete Button -->
+                        <button type="button" class="btn-save" onclick="if(confirm('Are you sure you want to delete this working weekend entry?')) deleteWorkingWeekend({{ i.id }});">
+                            Delete
+                        </button>   
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
 
     <script>
         const form = document.getElementById("attendanceForm");
@@ -446,9 +496,92 @@
         });
     }
 
+    function deleteWorkingWeekend(weekendId) {
+    const successMsg = document.querySelector('.alert.success1');
+    const errorMsg = document.querySelector('.alert.error1');
+    
+    // Hide both messages initially
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    
+    fetch(`/delete-working-weekend/${weekendId}`, { method: "POST" })
+        .then(response => response.json())  
+        .then(data => {
+            if (data.success) {
+                successMsg.textContent = "Working weekend entry deleted successfully!";
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                    location.reload();
+                }, 2000);
+            } else {
+                errorMsg.textContent = "Error deleting working weekend entry.";
+                errorMsg.style.display = 'block';
+                setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+            }
+        })
+        .catch(error => {
+            errorMsg.textContent = "Server error — please try again later!";
+            errorMsg.style.display = 'block';
+            setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+        });
+}
+
         function logout() {
             window.location.href = "/logout";
         }
+
+function addWorkingWeekend() {
+    const empId = document.querySelector('select[name="emp_id"]').value;
+    const weekendDate = document.querySelector('input[name="weekend_date"]').value;
+    const workType = document.querySelector('select[name="work_type"]').value;
+    
+    const successMsg = document.querySelector('.alert.success1');
+    const errorMsg = document.querySelector('.alert.error1');
+    
+    // Hide both messages initially
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    if (!empId || !weekendDate || !workType) {
+        errorMsg.textContent = "Please fill all fields.";
+        errorMsg.style.display = 'block';
+        setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+        return;
+    }
+
+    fetch("/add-working-weekend", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            emp_id: empId,
+            weekend_date: weekendDate,
+            work_type: workType
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            successMsg.textContent = "Working weekend added successfully!";
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                location.reload();
+            }, 2000);
+        } else {
+            errorMsg.textContent = "Error adding working weekend: " + data.message;
+            errorMsg.style.display = 'block';
+            setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+        }
+    })
+    .catch(error => {
+        errorMsg.textContent = "Server error — please try again later!";
+        errorMsg.style.display = 'block';
+        setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+    });
+}
 
 
     </script>

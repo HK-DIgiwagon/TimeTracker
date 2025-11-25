@@ -1,4 +1,5 @@
 from operator import or_
+from tabnanny import check
 from fastapi import FastAPI, Depends, HTTPException,Query,UploadFile, File,Request, Form
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
@@ -23,6 +24,7 @@ from fastapi.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
 from leave_record_operations import process_leave_data
+# from api_scheduler import start_scheduler
 
 
 
@@ -31,6 +33,10 @@ from leave_record_operations import process_leave_data
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Employee Attendance Demo")
+
+# @app.on_event("startup")
+# def startup_event():
+#     start_scheduler()
 
 app.add_middleware(
     SessionMiddleware,
@@ -79,11 +85,20 @@ def dashboard(request: Request,db: Session = Depends(get_db)):
     # email is none or empty
     new_employees = db.query(models.EmployeeMaster).filter(or_(models.EmployeeMaster.email == None, models.EmployeeMaster.email == "")).all()
     new_list = [{"id": e.id, "name": e.name, "email": e.email} for e in new_employees]
+    employee_chase_dict = {e.id: e.name for e in db.query(models.EmployeeMaster).all()}
+    Extra_working_days= db.query(models.WorkingWeekend).all()
+    Extra_working_days_list = [{"id": e.id, "emp_id": e.emp_id,"Name":employee_chase_dict.get(e.emp_id), "weekend_date": e.weekend_date, "work_type": e.work_type} for e in Extra_working_days]
+
+    all_employees = db.query(models.EmployeeMaster).all()
+    all_employees_dict = {e.id: e.name for e in all_employees}
 
     return templates.TemplateResponse("dashboard.html", {
         "request": request,
         "user": request.session.get("user"),
-        "new_employees": new_list
+        "new_employees": new_list,
+        "extra_working_days": Extra_working_days_list,
+        "all_employees": all_employees_dict,
+        "leave_types": ["full_day", "first_half", "second_half"]
     })
 
 
@@ -108,6 +123,54 @@ def update_email(payload: EmailUpdate, request: Request, db: Session = Depends(g
     return {"success": True, "message": f"Email updated for employee {emp_id}"}
 
 
+@app.post("/add-working-weekend")
+def add_working_weekend(request: Request, emp_id: str = Form(...), weekend_date: str = Form(...), work_type: str = Form(...), db: Session = Depends(get_db)):
+    try:
+        if not request.session.get("user"):
+            raise HTTPException(status_code=401, detail="Unauthorized")
+
+        # Validate emp_id exists
+        employee = db.query(EmployeeMaster).filter(EmployeeMaster.id == emp_id).first()
+        if not employee:
+            raise HTTPException(status_code=404, detail="Employee not found")
+
+        # Validate work_type
+        if work_type not in LeaveTypeEnum.__members__:
+            raise HTTPException(status_code=400, detail="Invalid work type")
+        
+        existing = db.query(WorkingWeekend).filter(
+            WorkingWeekend.emp_id == emp_id,
+            WorkingWeekend.weekend_date == weekend_date
+        ).first()
+        if existing:
+            return {"success": False, "message": "Working weekend entry already exists for this employee on the given date"}
+        # Add new WorkingWeekend entry
+        new_entry = WorkingWeekend(
+            emp_id=emp_id,
+            weekend_date=weekend_date,
+            work_type=LeaveTypeEnum[work_type]
+        )
+        db.add(new_entry)
+        db.commit()
+        return {"success": True, "message": "Working weekend added successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error adding working weekend: {str(e)}")
+
+@app.post("/delete-working-weekend/{entry_id}")
+def delete_working_weekend(entry_id: int, request: Request, db: Session = Depends(get_db)):
+    try:
+        if not request.session.get("user"):
+            raise HTTPException(status_code=401, detail="Unauthorized")
+
+        entry = db.query(WorkingWeekend).filter(WorkingWeekend.id == entry_id).first()
+        if not entry:
+            raise HTTPException(status_code=404, detail="Working weekend entry not found")
+
+        db.delete(entry)
+        db.commit()
+        return {"success": True, "message": "Working weekend entry deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error deleting working weekend: {str(e)}")
 
 @app.post("/process-attendance")
 async def process_attendance_file(request: Request,file: UploadFile = File(...)):
@@ -265,34 +328,45 @@ def get_late_comers(
 @app.get("/add_update_expected_hours")
 def add_update_expected_hours(db: Session = Depends(get_db)):
     """
-    Add or update expected working hours for each month of current year.
+    Add or update expected working hours for every year & month based on holidays.
     """
-    # fatch data from HolidayMaster
     holidays = db.query(models.HolidayMaster).all()
-    holiday_dates = {holiday.holiday_date for holiday in holidays}
-    current_year = date.today().year
     
-    for month in range(1, 13):
-        total_days = calendar.monthrange(current_year, month)[1]
-        working_days = sum(1 for day in range(1, total_days + 1)
-                           if date(current_year, month, day).weekday() < 5 and
-                           date(current_year, month, day) not in holiday_dates)
-        expected_hours = working_days * 8  # Assuming 8 working hours per day
-        
-        # Check if record exists
-        record = db.query(MonthlyExpectedHours).filter_by(year=current_year, month=month).first()
-        if record:
-            # Update existing record
-            record.working_days = working_days
-            record.expected_hours = expected_hours
-        else:
-            # Create new record
-            new_record = MonthlyExpectedHours(
-                year=current_year,
-                month=month,
-                working_days=working_days,
-                expected_hours=expected_hours
+    # Group holidays by year -> {2024: {dates}, 2025: {dates}, ...}
+    holiday_map = {}
+    for h in holidays:
+        y = h.holiday_date.year
+        if y not in holiday_map:
+            holiday_map[y] = set()
+        holiday_map[y].add(h.holiday_date)
+
+    # Loop over each year found in holiday table
+    for year, holiday_dates in holiday_map.items():
+        for month in range(1, 12 + 1):
+            total_days = calendar.monthrange(year, month)[1]
+            working_days = sum(
+                1 for d in range(1, total_days + 1)
+                if date(year, month, d).weekday() < 5 and
+                date(year, month, d) not in holiday_dates
             )
-            db.add(new_record)
+            expected_hours = working_days * 8
+
+            record = (
+                db.query(MonthlyExpectedHours)
+                .filter_by(year=year, month=month)
+                .first()
+            )
+
+            if record:
+                record.working_days = working_days
+                record.expected_hours = expected_hours
+            else:
+                db.add(MonthlyExpectedHours(
+                    year=year,
+                    month=month,
+                    working_days=working_days,
+                    expected_hours=expected_hours
+                ))
+
     db.commit()
-    return {"status": "success", "message": "Expected working hours updated for each month."}
+    return {"status": "success", "message": "Expected working hours updated for all years & months."}

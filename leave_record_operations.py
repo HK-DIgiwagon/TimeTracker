@@ -77,10 +77,9 @@ def store_leave_records(records):
     try:
         # Cache employee names once
         emp_cache = {e.name.lower(): e.id for e in db.query(EmployeeMaster).all()}
-
+        
         # Cache existing leaves to avoid hitting DB repeatedly
-        existing_leaves = {(l.emp_id, l.leave_date) for l in db.query(EmployeeLeave.emp_id, EmployeeLeave.leave_date)}
-
+        existing_leaves = {(l.emp_id, l.leave_date,l.leave_type.value) for l in db.query(EmployeeLeave.emp_id, EmployeeLeave.leave_date,EmployeeLeave.leave_type)}
         new_entries = []
 
         for rec in records.values():
@@ -102,17 +101,20 @@ def store_leave_records(records):
 
             for date_str, single_day in days.items():
 
-                # Skip if leave already exists
-                if (emp_id, date_str) in existing_leaves:
-                    continue
+
 
                 leave_count = float(single_day.get("LeaveCount"))
-                session = single_day.get("Session")
 
                 if leave_count == 0.5:
+                    session = single_day.get("Session")
                     leave_type = "first_half" if session == 1 else "second_half"
                 else:
                     leave_type = "full_day"
+
+                # Skip if leave already exists
+                if (emp_id, datetime.strptime(date_str, "%Y-%m-%d").date(), leave_type) in existing_leaves:
+                    leave_logger.info(f"Leave for Employee ID {emp_id} on {date_str} {leave_type} leave already exists. Skipping.")
+                    continue
 
                 new_entries.append(EmployeeLeave(
                     emp_id=emp_id,
