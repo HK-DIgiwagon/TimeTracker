@@ -270,7 +270,7 @@
     <!-- NAVBAR -->
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', path='images/Digiwagon_logo1.png') }}" alt="Logo">
+            <img src="{{ url_for('static', path='images/Digiwagon-header-logo-v1.1.svg') }}" alt="Logo">
         </div>
 
         <div class="right">
@@ -287,7 +287,8 @@
 
             <form id="attendanceForm">
                 <input type="file" id="fileInput" accept=".xls" required>
-                <button type="submit" class="btn-upload" id="uploadBtn">Upload File</button>
+                <button type="button" class="btn-upload" onclick="processAttendance()">Upload File</button>
+
             </form>
 
             <div class="loader" id="loader"></div>
@@ -400,73 +401,59 @@
 
 </div>
 
-    <script>
-        const form = document.getElementById("attendanceForm");
-        const loader = document.getElementById("loader");
-        const successMsg = document.getElementById("successMsg");
-        const errorMsg = document.getElementById("errorMsg");
-        const fileInput = document.getElementById("fileInput");
-        const uploadBtn = document.getElementById("uploadBtn");
-        const usersList = document.getElementById("usersList");
+<script>
+        function processAttendance() {
+            const fileInput = document.getElementById("fileInput");
+            const loader = document.getElementById("loader");
+            const successMsg = document.getElementById("successMsg");
+            const errorMsg = document.getElementById("errorMsg");
 
-        let newUsers = [];
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
+            // Hide messages
             successMsg.style.display = "none";
             errorMsg.style.display = "none";
-            loader.style.display = "block";
-            uploadBtn.disabled = true;
 
             const file = fileInput.files[0];
             if (!file) {
                 errorMsg.innerText = "Please select a file first!";
                 errorMsg.style.display = "block";
-                loader.style.display = "none";
-                uploadBtn.disabled = false;
                 return;
             }
+
+            loader.style.display = "block";
 
             const formData = new FormData();
             formData.append("file", file);
 
-            try {
-                const response = await fetch("/process-attendance", {
-                    method: "GET",
-                    body: formData,
-                });
-
-                const result = await response.json();
+            fetch("/process-attendance", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json().then(data => ({ ok: res.ok, data })))
+            .then(result => {
                 loader.style.display = "none";
-                uploadBtn.disabled = false;
 
-                if (response.ok) {
-                    successMsg.innerText = result.message;
+                if (result.ok && result.data.success !== false) {
+                    successMsg.innerText = result.data.message || "Uploaded successfully!";
                     successMsg.style.display = "block";
                     fileInput.value = "";
 
-                    // Check if there are new users in the response
-                    if (result.new_users && result.new_users.length > 0) {
-                        newUsers = result.new_users;
-                        renderUsers();
-                    } else {
-                        renderUsers(); // Show empty state
+                    // reload if needed
+                    if (result.data.new_users) {
+                        location.reload();
                     }
                 } else {
-                    errorMsg.innerText = result.detail || "Something went wrong!";
+                    errorMsg.innerText = result.data.detail || result.data.message || "Something went wrong!";
                     errorMsg.style.display = "block";
                 }
-
-            } catch (error) {
+            })
+            .catch(() => {
                 loader.style.display = "none";
-                uploadBtn.disabled = false;
-                errorMsg.innerText = "Server error — please try again later!";
+                errorMsg.innerText = "Server error — try again later!";
                 errorMsg.style.display = "block";
-            }
-        });
+            });
+        }
 
-
-       function saveEmail(empId) {
+        function saveEmail(empId) {
         const emailInput = document.getElementById(`email_${empId}`);
         const email = emailInput.value.trim();
 
