@@ -338,7 +338,7 @@
     </div>
     
     <!-- Employees Extra Working Days Section - Full Width -->
-    <div class="upload-section" style="margin: 30px;">
+    <div class="upload-section" style="margin-top: 1.5rem;">
         <div class="section-title">Extra Working Days</div>
 
         <div style="margin-top: 20px; font-weight: bold; font-size: 18px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
@@ -403,55 +403,66 @@
 
 <script>
         function processAttendance() {
-            const fileInput = document.getElementById("fileInput");
-            const loader = document.getElementById("loader");
-            const successMsg = document.getElementById("successMsg");
-            const errorMsg = document.getElementById("errorMsg");
+        const fileInput = document.getElementById("fileInput");
+        const loader = document.getElementById("loader");
+        const successMsg = document.getElementById("successMsg");
+        const errorMsg = document.getElementById("errorMsg");
 
-            // Hide messages
-            successMsg.style.display = "none";
-            errorMsg.style.display = "none";
+        // Hide messages
+        successMsg.style.display = "none";
+        errorMsg.style.display = "none";
 
-            const file = fileInput.files[0];
-            if (!file) {
-                errorMsg.innerText = "Please select a file first!";
-                errorMsg.style.display = "block";
-                return;
-            }
+        const file = fileInput.files[0];
+        if (!file) {
+            errorMsg.innerText = "Please select a file first!";
+            errorMsg.style.display = "block";
 
-            loader.style.display = "block";
-
-            const formData = new FormData();
-            formData.append("file", file);
-
-            fetch("/process-attendance", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.json().then(data => ({ ok: res.ok, data })))
-            .then(result => {
-                loader.style.display = "none";
-
-                if (result.ok && result.data.success !== false) {
-                    successMsg.innerText = result.data.message || "Uploaded successfully!";
-                    successMsg.style.display = "block";
-                    fileInput.value = "";
-
-                    // reload if needed
-                    if (result.data.new_users) {
-                        location.reload();
-                    }
-                } else {
-                    errorMsg.innerText = result.data.detail || result.data.message || "Something went wrong!";
-                    errorMsg.style.display = "block";
-                }
-            })
-            .catch(() => {
-                loader.style.display = "none";
-                errorMsg.innerText = "Server error — try again later!";
-                errorMsg.style.display = "block";
-            });
+            // Auto hide after 3 seconds
+            setTimeout(() => { errorMsg.style.display = "none"; }, 3000);
+            return;
         }
+
+        loader.style.display = "block";
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        fetch("/process-attendance", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json().then(data => ({ ok: res.ok, data })))
+        .then(result => {
+            loader.style.display = "none";
+
+            if (result.ok && result.data.success !== false) {
+                successMsg.innerText = result.data.message || "Uploaded successfully!";
+                successMsg.style.display = "block";
+                fileInput.value = "";
+
+                // Auto hide after 3 seconds
+                setTimeout(() => { successMsg.style.display = "none"; }, 3000);
+
+                if (result.data.new_users) {
+                    location.reload();
+                }
+            } else {
+                errorMsg.innerText = result.data.detail || result.data.message || "Something went wrong!";
+                errorMsg.style.display = "block";
+
+                // Auto hide after 3 seconds
+                setTimeout(() => { errorMsg.style.display = "none"; }, 3000);
+            }
+        })
+        .catch(() => {
+            loader.style.display = "none";
+            errorMsg.innerText = "Server error — try again later!";
+            errorMsg.style.display = "block";
+
+            // Auto hide after 3 seconds
+            setTimeout(() => { errorMsg.style.display = "none"; }, 3000);
+        });
+    }
 
         function saveEmail(empId) {
         const emailInput = document.getElementById(`email_${empId}`);
